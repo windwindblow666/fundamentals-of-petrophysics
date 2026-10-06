@@ -71,23 +71,19 @@ tr.subrow td{background:#e2e8f0;font-weight:700;color:#0f172a}
 .mhead b{font-size:15.5px}
 .mhead .pg{font-size:12px;color:var(--muted)}
 .hint{font-size:12px;color:var(--muted);margin:2px 0 0}
-.mtree{overflow-x:auto;padding:10px 2px 4px;background:#fbfcfe;border:1px dashed #dbe3ee;border-radius:12px}
-.mtree .tree,.mtree .tree ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;align-items:flex-start}
-.mtree .tree{width:max-content;margin:0 auto}
-.mtree .tree ul{padding-top:22px;position:relative;width:max-content}
-.mtree .tree li{display:flex;flex-direction:column;align-items:center;position:relative;padding:22px 5px 0}
-.mtree .tree li::before,.mtree .tree li::after{content:"";position:absolute;top:0;height:22px;border-top:2px solid var(--line)}
-.mtree .tree li::before{left:0;width:50%}
-.mtree .tree li::after{right:0;width:50%;border-left:2px solid var(--line)}
-.mtree .tree li:first-child::before{border-top:none}
-.mtree .tree li:last-child::after{border-top:none}
-.mtree .tree li:only-child::before{display:none}
-.mtree .tree li:only-child::after{border-top:none;left:50%;right:auto;width:0}
-.mtree .tree ul::before{content:"";position:absolute;top:0;left:50%;height:22px;border-left:2px solid var(--line)}
-.mtree .tree>ul{padding-top:14px}
-.mtree .tree>ul::before{display:none}
-.mtree .tree>li{padding-top:0}
-.mtree .tree>li::before,.mtree .tree>li::after{display:none}
+.mtree{padding:14px 22px 16px;background:#fbfcfe;border:1px dashed #dbe3ee;border-radius:12px}
+.mtree>.tn-root{display:table}
+.mtree details{line-height:0;border:none;background:none;border-radius:0;margin:0;overflow:visible;padding:0}
+.mtree ul.vkids{list-style:none;margin:0;padding:0 0 0 26px}
+.mtree ul.vkids>li{position:relative;padding:5px 0}
+.mtree ul.vkids>li::before{content:"";position:absolute;left:-17px;top:20px;width:17px;border-top:2px solid var(--line)}
+.mtree ul.vkids>li::after{content:"";position:absolute;left:-17px;top:0;height:100%;border-left:2px solid var(--line)}
+.mtree ul.vkids>li:last-child::after{height:20px}
+.mtree details>summary{display:inline-block;padding:0;background:none;gap:0}
+.mtree summary::before{margin-right:5px;font-size:12px}
+.mtree .tnode{max-width:680px}
+.mtree .tn-2{font-size:13.5px}
+.mtree .tn-root{font-size:15px}
 .tnode{display:inline-block;padding:6px 12px;border-radius:8px;font-size:13px;line-height:1.5;text-align:center;max-width:200px;background:#fff;border:1.5px solid var(--line);color:#334155;box-shadow:0 1px 2px rgba(15,23,42,.07)}
 .tn-root{background:#0f172a;color:#fff;font-weight:700;font-size:14px;border:none}
 .tn-1{color:#fff;font-weight:700;padding:7px 14px;border:none}
@@ -149,16 +145,16 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   .twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
   table{font-size:12.5px}
   th,td{padding:6px 8px}
-  .mtree{padding:8px 2px 2px}
+  .mtree{padding:10px 10px 12px}
   .mhead b{font-size:14px}
-  .mtree .tree ul{padding-top:14px}
-  .mtree .tree ul::before{height:14px}
-  .mtree .tree li{padding:14px 3px 0}
-  .mtree .tree li::before,.mtree .tree li::after{height:14px}
-  .tnode{max-width:150px;font-size:11.5px;padding:4px 8px}
+  .mtree ul.vkids{padding-left:18px}
+  .mtree ul.vkids>li::before{left:-13px;width:13px;top:18px}
+  .mtree ul.vkids>li::after{left:-13px}
+  .mtree ul.vkids>li:last-child::after{height:18px}
+  .tnode{max-width:520px;font-size:11.5px;padding:4px 8px}
   .tn-root{font-size:12.5px}
   .tn-1{font-size:12px;padding:5px 9px}
-  .tn-2{font-size:11px}
+  .tn-2{font-size:11.5px}
 }
 </style>
 </head>
@@ -248,23 +244,19 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
 
 <!-- ===================== 2 思维导图 ===================== -->
 <section class="card" id="mindmap">
-  <h2 style="border-color:var(--c3)">② 思维导图<span class="en">MIND MAP（可左右滚动）</span></h2>
-  <p class="hint">结构：篇 → 章/节 → 知识点；<span class="imp">重点</span>为老师标注"重要！!!"的考点。建议对照本图复述各分支，检验掌握程度。</p>
+  <h2 style="border-color:var(--c3)">② 思维导图<span class="en">MIND MAP（竖向展开 · 点击节名称可折叠分支）</span></h2>
+  <p class="hint">结构：篇 → 章/节 → 知识点，自上而下阅读；点击各节名称可折叠/展开该分支；<span class="imp">重点</span>为老师标注"重要！!!"的考点。建议对照本图逐条复述，检验掌握程度。</p>
 
   <div class="mwrap">
     <div class="mhead"><span class="bar" style="background:#0f172a"></span><b>全篇总览</b><span class="pg">P8–203</span></div>
     <div class="mtree">
-      <ul class="tree">
-        <li>
-          <div class="tnode tn-root">第一篇 储层流体的物化性质</div>
-          <ul>
-            <li><div class="tnode tn-1 s0">绪论<br>三大问题 · 课程定位</div></li>
-            <li><div class="tnode tn-1 s1">第一章<br>组成与分类（定性）</div></li>
-            <li><div class="tnode tn-1 s2">第二章<br>气体状态方程（定量）</div></li>
-            <li><div class="tnode tn-1 s3">第三章<br>相态与相平衡 ★核心</div></li>
-            <li><div class="tnode tn-1 s4">第四章<br>地层流体参数（应用）</div></li>
-          </ul>
-        </li>
+      <div class="tnode tn-root">第一篇 储层流体的物化性质</div>
+      <ul class="vkids">
+        <li><div class="tnode tn-1 s0">绪论 —— 三大问题 · 课程定位</div></li>
+        <li><div class="tnode tn-1 s1">第一章 —— 组成与分类（定性）</div></li>
+        <li><div class="tnode tn-1 s2">第二章 —— 气体状态方程（定量）</div></li>
+        <li><div class="tnode tn-1 s3">第三章 —— 相态与相平衡 ★核心</div></li>
+        <li><div class="tnode tn-1 s4">第四章 —— 地层流体参数（应用）</div></li>
       </ul>
     </div>
   </div>
@@ -272,33 +264,35 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <div class="mwrap">
     <div class="mhead"><span class="bar" style="background:#475569"></span><b>绪论</b><span class="pg">P8–20</span></div>
     <div class="mtree">
-      <ul class="tree">
+      <div class="tnode tn-root">绪 论</div>
+      <ul class="vkids">
         <li>
-          <div class="tnode tn-root">绪 论</div>
-          <ul>
-            <li>
-              <div class="tnode tn-2 b0">开发的重要意义</div>
-              <ul>
-                <li><div class="tnode">能源·化工原料·战备物资</div></li>
-                <li><div class="tnode">2025 年：产油 2.16 亿吨<br>对外依存度 73%</div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b0">研究内容与任务</div>
-              <ul>
-                <li><div class="tnode">定义：微观/细观研究流体+岩石+渗流物理现象（P14）</div></li>
-                <li><div class="tnode">三大内容：流体物性｜岩石物性｜多相渗流机理（P15）</div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b0">课程特点与学习方法</div>
-              <ul>
-                <li><div class="tnode">专业基础课·必修·承上启下</div></li>
-                <li><div class="tnode">先行：物理/化学/物理化学<br>后续：渗流力学/油藏工程/采油</div></li>
-                <li><div class="tnode">考核：作业测验20%｜实验20%｜期末60%</div></li>
-              </ul>
-            </li>
-          </ul>
+          <details open>
+            <summary><span class="tnode tn-2 b0">开发的重要意义</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">能源 · 化工原料 · 战备物资</div></li>
+              <li><div class="tnode">2025 年：国内产油 2.16 亿吨，对外依存度 73%</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b0">研究内容与任务</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">定义：从（微观）细观上研究流体物性、岩石物性及渗流中的物理/物理化学现象（P14）</div></li>
+              <li><div class="tnode">三大内容：流体物性｜岩石物性｜多相渗流机理（P15）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b0">课程特点与学习方法</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">专业基础课 · 必修 · 承上启下</div></li>
+              <li><div class="tnode">先行：物理/化学/物理化学；后续：渗流力学/油藏工程/采油工程/提高采收率</div></li>
+              <li><div class="tnode">考核：作业测验 20%｜实验 20%｜期末闭卷 60%</div></li>
+            </ul>
+          </details>
         </li>
       </ul>
     </div>
@@ -307,52 +301,58 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <div class="mwrap">
     <div class="mhead"><span class="bar" style="background:#2563eb"></span><b>第一章 油气藏流体的化学组成与物理性质</b><span class="pg">P23–52</span></div>
     <div class="mtree">
-      <ul class="tree">
+      <div class="tnode tn-root">第一章</div>
+      <ul class="vkids">
         <li>
-          <div class="tnode tn-root">第一章</div>
-          <ul>
-            <li>
-              <div class="tnode tn-2 b1">① 石油的化学组成</div>
-              <ul>
-                <li><div class="tnode">元素：C+H ≈96~99%<br>S/N/O 共 1~5%</div></li>
-                <li><div class="tnode">烷烃 C<sub>n</sub>H<sub>2n+2</sub>：<br>C₁₋₄气｜C₅₋₁₆液｜C₁₇₊固(石蜡)<span class="imp">重点</span></div></li>
-                <li><div class="tnode">环烷烃：环戊烷系/环己烷系</div></li>
-                <li><div class="tnode">芳香烃：含苯环</div></li>
-                <li><div class="tnode">非烃类=极性物质；<br>胶质·沥青质（大分子粘稠）</div></li>
-                <li><div class="tnode">组成参数：分子量｜含蜡量<br>（石蜡C17-35/地蜡&gt;C36）｜含硫</div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b1">② 石油的物理性质</div>
-              <ul>
-                <li><div class="tnode">密度、相对密度、<br>API=141.5/γ<sub>o</sub>−131.5<span class="imp">重点</span></div></li>
-                <li><div class="tnode">粘度：动力μ｜运动ν=μ/ρ<span class="imp">重点</span><br>1Pa·s=1000mPa·s；1mPa·s=1cP</div></li>
-                <li><div class="tnode">凝固点&gt;40℃=高凝油</div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b1">③ 原油分类</div>
-              <ul>
-                <li><div class="tnode">地面：硫 0.5/2｜胶质 8/25｜<br>蜡 1/2｜密度基 0.82/0.89/0.93</div></li>
-                <li><div class="tnode">地层按粘度：5/20/50 分界<br>稠油&gt;50mPa·s 且 γ&gt;0.920<span class="imp">重点</span></div></li>
-                <li><div class="tnode">按相态：黑油｜挥发油｜<br>凝析油｜高凝油<span class="imp">重点</span></div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b1">④ 天然气的化学组成</div>
-              <ul>
-                <li><div class="tnode">C₁~C₄ 为主，甲烷 70~98%</div></li>
-                <li><div class="tnode">非烃：CO₂·N₂·H₂S·水汽·He</div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b1">⑤ 油气藏分类<span class="imp">重点</span></div>
-              <ul>
-                <li><div class="tnode">四级树：油气藏→油/气藏→<br>黑油·轻质油·凝析气·一般气→8类</div></li>
-                <li><div class="tnode">五类命名：气藏｜凝析气藏｜<br>挥发性油藏｜油藏(黑油)｜稠油藏</div></li>
-              </ul>
-            </li>
-          </ul>
+          <details open>
+            <summary><span class="tnode tn-2 b1">① 石油的化学组成</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">元素：C+H 约 96~99%，S/N/O 共 1~5%（P24–25）</div></li>
+              <li><div class="tnode">烷烃 C<sub>n</sub>H<sub>2n+2</sub>：C₁₋₄ 气态｜C₅₋₁₆ 液态｜C₁₇₊ 固态（石蜡）<span class="imp">重点</span>（P28）</div></li>
+              <li><div class="tnode">环烷烃：环戊烷系 / 环己烷系；芳香烃：含苯环；原油中无烯烃、炔烃</div></li>
+              <li><div class="tnode">非烃类＝极性物质；胶质·沥青质：大分子、非对称、粘稠状</div></li>
+              <li><div class="tnode">组成参数：分子量（混合物）｜含蜡量（石蜡 C17–35、地蜡 &gt;C36–55）｜胶质/沥青质｜含硫量</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b1">② 石油的物理性质</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">密度与相对密度：d₄²⁰（中俄）｜γ<sub>o</sub>（欧美）｜API=141.5/γ<sub>o</sub>−131.5<span class="imp">重点</span>（P35–36）</div></li>
+              <li><div class="tnode">粘度：动力 μ｜运动 ν=μ/ρ<span class="imp">重点</span>；1Pa·s=1000mPa·s，1mPa·s=1cP（P39–40）</div></li>
+              <li><div class="tnode">粘度三规律：分子量↑粘度↑｜胶质沥青质↑粘度↑｜必须注明温度</div></li>
+              <li><div class="tnode">凝固点：失去流动性的临界温度；&gt;40℃ 为高凝油（P37）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b1">③ 原油分类</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">地面（商品）：含硫 0.5/2｜胶质-沥青质 8/25｜含蜡 1/2｜关键组分（密度）0.82/0.89/0.93（P43–46）</div></li>
+              <li><div class="tnode">地层（油层条件）按粘度：低&lt;5｜中 5~20｜高 20~50｜稠油&gt;50mPa·s 且 γ&gt;0.920<span class="imp">重点</span>（P47）</div></li>
+              <li><div class="tnode">按相态：黑油｜挥发油｜凝析油｜高凝油<span class="imp">重点</span>（P48）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b1">④ 天然气的化学组成</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">以甲烷为主的 C₁~C₄ 混合气；甲烷摩尔浓度 70~98%（P49）</div></li>
+              <li><div class="tnode">非烃：CO₂·N₂·H₂S·水汽，偶含 He、Ar</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b1">⑤ 油气藏分类<span class="imp">重点</span>（按流体特性）</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">四级树：油气藏→油/气藏→黑油·轻质油·凝析气·一般气→8 个四级类（P51）</div></li>
+              <li><div class="tnode">五类命名：气藏｜凝析气藏｜挥发性油藏（临界油气藏）｜油藏（黑油）｜重质油藏/稠油油藏（P52）</div></li>
+            </ul>
+          </details>
         </li>
       </ul>
     </div>
@@ -361,47 +361,50 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <div class="mwrap">
     <div class="mhead"><span class="bar" style="background:#059669"></span><b>第二章 天然气的高压物理性质</b><span class="pg">P53–96</span></div>
     <div class="mtree">
-      <ul class="tree">
+      <div class="tnode tn-root">第二章</div>
+      <ul class="vkids">
         <li>
-          <div class="tnode tn-root">第二章</div>
-          <ul>
-            <li>
-              <div class="tnode tn-2 b2">① 视分子量与密度</div>
-              <ul>
-                <li><div class="tnode">分类：伴生/非伴生｜干湿气13.5｜<br>贫富气94｜酸气/洁气<span class="imp">重点</span></div></li>
-                <li><div class="tnode">组成表示：摩尔y=体积φ｜<br>质量→摩尔换算</div></li>
-                <li><div class="tnode">M=Σy<sub>i</sub>M<sub>i</sub>，16&lt;M&lt;29<span class="imp">重点</span></div></li>
-                <li><div class="tnode">γ<sub>g</sub>=M/29（相对空气）<span class="imp">重点</span></div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b2">② 状态方程与对比状态<span class="imp">重点</span></div>
-              <ul>
-                <li><div class="tnode">PV=nRT（R=0.008314）</div></li>
-                <li><div class="tnode">PV=ZnRT；Z=V<sub>实</sub>/V<sub>理</sub><span class="imp">重点</span></div></li>
-                <li><div class="tnode">对比状态定律：同 P<sub>r</sub>T<sub>r</sub><br>→ Z 等近似相同<span class="imp">重点</span></div></li>
-                <li><div class="tnode">视临界参数加权：<br>P<sub>pc</sub>=Σy<sub>i</sub>P<sub>ci</sub>，T<sub>pc</sub>=Σy<sub>i</sub>T<sub>ci</sub><span class="imp">重点</span></div></li>
-                <li><div class="tnode">非烃校正：Wichert图版｜<br>Wichert-Aziz公式｜Eilerts加权</div></li>
-                <li><div class="tnode">求 Z 链：组成→M→γg→Ppc,Tpc<br>→Ppr,Tpr→查图→Z</div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b2">③ 天然气高压物性</div>
-              <ul>
-                <li><div class="tnode">B<sub>g</sub>=V/V<sub>sc</sub>=(273+t)/293·(P<sub>sc</sub>Z/P)<span class="imp">重点</span></div></li>
-                <li><div class="tnode">膨胀系数 E<sub>g</sub>=1/B<sub>g</sub></div></li>
-                <li><div class="tnode">等温压缩率 C<sub>g</sub>=−(1/V)(∂V/∂P)<sub>T</sub></div></li>
-                <li><div class="tnode">粘度：低压与P无关·随T↑｜<br>高压随P↑·随T↓·似液体<span class="imp">重点</span></div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b2">④ 湿天然气与水合物</div>
-              <ul>
-                <li><div class="tnode">绝对湿度X｜相对湿度φ<br>含水量3条规律</div></li>
-                <li><div class="tnode">水合物(可燃冰)：笼形化合物<br>低温高压形成<span class="imp">重点</span>·资源/堵塞/储运</div></li>
-              </ul>
-            </li>
-          </ul>
+          <details open>
+            <summary><span class="tnode tn-2 b2">① 视分子量与密度</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">分类：伴生/非伴生｜干气/湿气（C₅⁺ 液体 13.5 cm³/标m³）｜贫气/富气（C₃⁺ 94）｜酸气/洁气<span class="imp">重点</span>（P54–56）</div></li>
+              <li><div class="tnode">组成表示与换算：摩尔组成 y<sub>i</sub>＝体积组成 φ<sub>i</sub>｜质量组成→摩尔组成（P57–58）</div></li>
+              <li><div class="tnode">视分子量 M=Σy<sub>i</sub>M<sub>i</sub>，16&lt;M&lt;29<span class="imp">重点</span>（P59）</div></li>
+              <li><div class="tnode">密度 ρ<sub>g</sub>=m/V；相对密度 γ<sub>g</sub>=M/29<span class="imp">重点</span>（P60–61）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b2">② 状态方程与对比状态<span class="imp">重点</span></span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">理想气体 PV=nRT（R=0.008314 MPa·m³/(kmol·K)）（P62）</div></li>
+              <li><div class="tnode">真实气体 PV=ZnRT；压缩因子 Z=V<sub>实</sub>/V<sub>理</sub><span class="imp">重点</span>（P63）</div></li>
+              <li><div class="tnode">对比状态定律：相同对比状态 → Z、粘度等内涵性质近似相同<span class="imp">重点</span>（P65–66）</div></li>
+              <li><div class="tnode">视临界参数加权：P<sub>pc</sub>=Σy<sub>i</sub>P<sub>ci</sub>，T<sub>pc</sub>=Σy<sub>i</sub>T<sub>ci</sub><span class="imp">重点</span> → P<sub>pr</sub>/T<sub>pr</sub> 查 Z 图版（P68–70）</div></li>
+              <li><div class="tnode">非烃校正：Wichert 图版｜Wichert-Aziz 公式｜Eilerts 加权；非烃&lt;5% 且 CH₄&gt;50% 免校正（P72–75）</div></li>
+              <li><div class="tnode">求 Z 流程链：组成→M→γ<sub>g</sub>→P<sub>pc</sub>,T<sub>pc</sub>→P<sub>pr</sub>,T<sub>pr</sub>→查图→Z</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b2">③ 天然气高压物性</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">体积系数 B<sub>g</sub>=V/V<sub>sc</sub>=(273+t)/293·(P<sub>sc</sub>Z/P)<span class="imp">重点</span>；膨胀系数 E<sub>g</sub>=1/B<sub>g</sub>（P76–79）</div></li>
+              <li><div class="tnode">等温压缩率 C<sub>g</sub>=−(1/V)(∂V/∂P)<sub>T</sub>（P80）</div></li>
+              <li><div class="tnode">粘度：低压与 P 无关、随 T↑增大｜高压随 P↑、随 T↓、似液体<span class="imp">重点</span>（P82–85）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b2">④ 湿天然气与水合物</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">绝对湿度 X｜相对湿度 φ；压力↑含水↓、温度↑含水↑、含盐↑含水↓（P87–88）</div></li>
+              <li><div class="tnode">水合物（可燃冰）：笼形化合物，低温高压易形成<span class="imp">重点</span>；资源/井筒堵塞/储运三重意义（P91–95）</div></li>
+            </ul>
+          </details>
         </li>
       </ul>
     </div>
@@ -410,52 +413,56 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <div class="mwrap">
     <div class="mhead"><span class="bar" style="background:#d97706"></span><b>第三章 油气藏烃类的相态和汽液平衡（核心章）</b><span class="pg">P97–163</span></div>
     <div class="mtree">
-      <ul class="tree">
+      <div class="tnode tn-root">第三章</div>
+      <ul class="vkids">
         <li>
-          <div class="tnode tn-root">第三章</div>
-          <ul>
-            <li>
-              <div class="tnode tn-2 b3">① 相态特征（理论）</div>
-              <ul>
-                <li><div class="tnode">概念：体系·相·组分·组成·<br>拟组分（C₇₊）</div></li>
-                <li><div class="tnode">泡点P<sub>b</sub>／露点P<sub>d</sub> 定义<span class="imp">重点</span></div></li>
-                <li><div class="tnode">单组分→双组分(环形)→<br>多组分相图；临界凝析T、P</div></li>
-                <li><div class="tnode">等温降压反凝析：<br>液量0→40%→0<span class="imp">重点</span></div></li>
-                <li><div class="tnode">相图判油藏类型：欠饱和｜<br>饱和｜气顶｜凝析气｜气藏<span class="imp">重点</span></div></li>
-                <li><div class="tnode">五种典型相图：低收缩｜高收缩｜<br>凝析气｜湿气｜干气</div></li>
-                <li><div class="tnode">CO₂超临界：7.38MPa、31℃</div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b3">② 汽液相平衡（计算）<span class="imp">重点</span></div>
-              <ul>
-                <li><div class="tnode">理想溶液 4 假设</div></li>
-                <li><div class="tnode">拉乌尔 P=xP<sub>v</sub>＋道尔顿 P=yP<span class="imp">重点</span></div></li>
-                <li><div class="tnode">气/液组成方程＋试算 n̄<sub>L</sub></div></li>
-                <li><div class="tnode">理想泡点 P<sub>b</sub>=Σz<sub>j</sub>P<sub>vj</sub>｜<br>露点 P<sub>d</sub>=1/Σ(z<sub>j</sub>/P<sub>vj</sub>)<span class="imp">重点</span></div></li>
-                <li><div class="tnode">理想方程 3 条局限<br>（甲烷 T<sub>c</sub>=190K）</div></li>
-                <li><div class="tnode">平衡比 K<sub>j</sub>=y<sub>j</sub>/x<sub>j</sub><span class="imp">重点</span>；<br>真实泡点 ΣZ<sub>j</sub>K<sub>j</sub>=1；露点 Σz/K=1</div></li>
-                <li><div class="tnode">收敛压力 P<sub>cv</sub> 与视收敛压力<span class="imp">重点</span></div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b3">③ 气体的溶解与分离<span class="imp">重点</span></div>
-              <ul>
-                <li><div class="tnode">闪蒸分离（一次脱气）：<br>组成不变·油气始终接触<span class="imp">重点</span></div></li>
-                <li><div class="tnode">多级分离：逐级排气·组成变<br>·矿场≤3级·获油多<span class="imp">重点</span></div></li>
-                <li><div class="tnode">微分分离：不断降压·不断排气</div></li>
-                <li><div class="tnode">一次 vs 多级：一次气量大但<br>轻油损耗大（气重）<span class="imp">重点</span></div></li>
-                <li><div class="tnode">亨利定律 R<sub>s</sub>=αP；溶解度规律：<br>丙&gt;乙&gt;CO₂&gt;甲&gt;N₂</div></li>
-                <li><div class="tnode">接触脱气=接触溶解（重合）<br>差异脱气≠差异溶解</div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b3">④ 分离实例（算例）</div>
-              <ul>
-                <li><div class="tnode">用相态方程求解油气分离问题</div></li>
-              </ul>
-            </li>
-          </ul>
+          <details open>
+            <summary><span class="tnode tn-2 b3">① 相态特征（理论）</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">概念：体系·相·组分·组成·拟组分（C₇₊）（P99–102）</div></li>
+              <li><div class="tnode">泡点压力 P<sub>b</sub>（液相出第一批气泡）／露点压力 P<sub>d</sub>（汽相出第一批液滴）<span class="imp">重点</span>（P103）</div></li>
+              <li><div class="tnode">相图演化：单组分→双组分（环形）→多组分包络线＋等液量线；临界凝析温度 T、压力 P（P104–107）</div></li>
+              <li><div class="tnode">等温降压反凝析：液量 0→40%→0<span class="imp">重点</span>；凝析气藏须保压高于露点开采（P108）</div></li>
+              <li><div class="tnode">相图判油藏类型：欠饱和｜饱和｜气顶｜凝析气｜气藏<span class="imp">重点</span>（P110–111）</div></li>
+              <li><div class="tnode">五种典型相图：低收缩｜高收缩｜凝析气｜湿气｜干气（P113–117）</div></li>
+              <li><div class="tnode">CO₂ 超临界：7.38MPa、31℃（P118）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b3">② 汽液相平衡（计算）<span class="imp">重点</span></span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">理想溶液 4 假设（P120）</div></li>
+              <li><div class="tnode">拉乌尔定律 P<sub>j</sub>=x<sub>j</sub>P<sub>vj</sub> ＋ 道尔顿定律 P<sub>j</sub>=y<sub>j</sub>P<span class="imp">重点</span>（P121–122）</div></li>
+              <li><div class="tnode">气/液相组成方程 ＋ 试算法求 n̄<sub>L</sub>（P124–125，例 3-1）</div></li>
+              <li><div class="tnode">理想泡点 P<sub>b</sub>=Σz<sub>j</sub>P<sub>vj</sub>｜露点 P<sub>d</sub>=1/Σ(z<sub>j</sub>/P<sub>vj</sub>)<span class="imp">重点</span>（P128–131）</div></li>
+              <li><div class="tnode">理想方程 3 条局限（甲烷 T<sub>c</sub>=190K）（P132）</div></li>
+              <li><div class="tnode">平衡比 K<sub>j</sub>=y<sub>j</sub>/x<sub>j</sub><span class="imp">重点</span>；真实泡点 ΣZ<sub>j</sub>K<sub>j</sub>=1，露点 Σ(z<sub>j</sub>/K<sub>j</sub>)=1（P133–141）</div></li>
+              <li><div class="tnode">收敛压力 P<sub>cv</sub> 与视收敛压力<span class="imp">重点</span>；NGAA K-P 图版（P143–145）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b3">③ 气体的溶解与分离<span class="imp">重点</span></span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">闪蒸分离（一次脱气）：组成不变，油气始终接触<span class="imp">重点</span>（P147–149）</div></li>
+              <li><div class="tnode">多级分离（差异分离）：逐级排气、组成变化，矿场≤3 级（3.5/0.5/0.1MPa）<span class="imp">重点</span>（P150–151）</div></li>
+              <li><div class="tnode">微分分离：不断降压、不断排气（P155）</div></li>
+              <li><div class="tnode">一次 vs 多级：一次气量大但气相对密度大（轻油损耗）<span class="imp">重点</span>（P153–154）</div></li>
+              <li><div class="tnode">亨利定律 R<sub>s</sub>=αP；溶解度规律：丙&gt;乙&gt;CO₂&gt;甲&gt;N₂（P156–158）</div></li>
+              <li><div class="tnode">接触脱气＝接触溶解（重合）；差异脱气≠差异溶解（P160–162）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b3">④ 分离实例（算例）</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">用相态方程求解油气分离问题</div></li>
+            </ul>
+          </details>
         </li>
       </ul>
     </div>
@@ -464,40 +471,42 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <div class="mwrap">
     <div class="mhead"><span class="bar" style="background:#dc2626"></span><b>第四章 储层流体的高压物理性质</b><span class="pg">P164–203</span></div>
     <div class="mtree">
-      <ul class="tree">
+      <div class="tnode tn-root">第四章</div>
+      <ul class="vkids">
         <li>
-          <div class="tnode tn-root">第四章</div>
-          <ul>
-            <li>
-              <div class="tnode tn-2 b4">① 地层油高压物性<span class="imp">重点</span></div>
-              <ul>
-                <li><div class="tnode">溶解气油比 R<sub>si</sub>=V<sub>g</sub>/V<sub>os</sub><span class="imp">重点</span></div></li>
-                <li><div class="tnode">体积系数 B<sub>o</sub>=V<sub>oR</sub>/V<sub>os</sub><br>（P=P<sub>b</sub> 时最大）<span class="imp">重点</span></div></li>
-                <li><div class="tnode">两相体积系数 B<sub>t</sub>=B<sub>o</sub>+(R<sub>si</sub>−R<sub>s</sub>)B<sub>g</sub><br>仅 P&lt;P<sub>b</sub> 存在<span class="imp">重点</span></div></li>
-                <li><div class="tnode">压缩系数 C<sub>o</sub>（高于泡点）<span class="imp">重点</span></div></li>
-                <li><div class="tnode">粘度：组成是内因｜T↑10℃约降半<br>｜以 P<sub>b</sub> 为界<span class="imp">重点</span></div></li>
-                <li><div class="tnode">图 4-7 综合曲线：各参数<br>随 P 变化规律<span class="imp">重点</span></div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b4">② 地层水高压物性</div>
-              <ul>
-                <li><div class="tnode">边水·底水·层间水·束缚水</div></li>
-                <li><div class="tnode">离子组成｜矿化度 mg/L｜<br>毫克当量浓度=浓度/化合当量<span class="imp">重点</span></div></li>
-                <li><div class="tnode">硬度：Ca²⁺Mg²⁺ 含量</div></li>
-                <li><div class="tnode">苏林四水型＋判别表<span class="imp">重点</span><br>Na₂SO₄｜NaHCO₃｜MgCl₂｜CaCl₂</div></li>
-                <li><div class="tnode">溶解气很低｜C<sub>w</sub>≈4×10⁻⁴｜<br>B<sub>w</sub>≈1.0~1.07｜μ<sub>w</sub> 规律</div></li>
-              </ul>
-            </li>
-            <li>
-              <div class="tnode tn-2 b4">③ 测算方法</div>
-              <ul>
-                <li><div class="tnode">PVT 实验流程：取样→质检→<br>P-V｜泡点｜接触脱气｜差异脱气｜粘度<span class="imp">重点</span></div></li>
-                <li><div class="tnode">图版法｜经验公式（Beggs-Robinson<br>粘度·Standing 体积系数）</div></li>
-                <li><div class="tnode">软件：PVT-sim｜Eclipse｜CMG</div></li>
-              </ul>
-            </li>
-          </ul>
+          <details open>
+            <summary><span class="tnode tn-2 b4">① 地层油高压物性<span class="imp">重点</span></span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">溶解气油比 R<sub>si</sub>=V<sub>g</sub>/V<sub>os</sub>（标m³/m³）<span class="imp">重点</span>（P168–169）</div></li>
+              <li><div class="tnode">体积系数 B<sub>o</sub>=V<sub>oR</sub>/V<sub>os</sub>，P=P<sub>b</sub> 时最大<span class="imp">重点</span>（P170–172）</div></li>
+              <li><div class="tnode">两相体积系数 B<sub>t</sub>=B<sub>o</sub>+(R<sub>si</sub>−R<sub>s</sub>)B<sub>g</sub>，仅 P&lt;P<sub>b</sub> 存在<span class="imp">重点</span>（P173–174）</div></li>
+              <li><div class="tnode">压缩系数 C<sub>o</sub>（高于泡点压力区间）<span class="imp">重点</span>（P175）</div></li>
+              <li><div class="tnode">粘度：组成是内因｜T↑10℃ 约降一半｜以 P<sub>b</sub> 为界<span class="imp">重点</span>（P177–179）</div></li>
+              <li><div class="tnode">图 4-7 综合曲线：各参数随 P 变化规律<span class="imp">重点</span>（P180）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b4">② 地层水高压物性</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">边水·底水（驱油动力）·层间水·束缚水（影响含油饱和度）（P181）</div></li>
+              <li><div class="tnode">离子组成｜矿化度 mg/L｜毫克当量浓度=浓度/化合当量<span class="imp">重点</span>（P182–184）</div></li>
+              <li><div class="tnode">硬度：Ca²⁺、Mg²⁺ 含量（P185）</div></li>
+              <li><div class="tnode">苏林四水型＋判别表<span class="imp">重点</span>：Na₂SO₄｜NaHCO₃｜MgCl₂｜CaCl₂（P186–187）</div></li>
+              <li><div class="tnode">溶解气很低｜C<sub>w</sub>≈4×10⁻⁴｜B<sub>w</sub>≈1.0~1.07｜μ<sub>w</sub> 规律（P189–195）</div></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details open>
+            <summary><span class="tnode tn-2 b4">③ 测算方法</span></summary>
+            <ul class="vkids">
+              <li><div class="tnode">PVT 实验流程：取样→质检→P-V｜泡点｜接触脱气｜差异脱气｜粘度<span class="imp">重点</span>（P196–197）</div></li>
+              <li><div class="tnode">图版法｜经验公式（Beggs-Robinson 粘度 · Standing 体积系数）（P198–200）</div></li>
+              <li><div class="tnode">软件：PVT-sim｜Eclipse｜CMG（P201）</div></li>
+            </ul>
+          </details>
         </li>
       </ul>
     </div>
