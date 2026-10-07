@@ -10,7 +10,7 @@
   --c0:#475569; --c1:#2563eb; --c2:#059669; --c3:#d97706; --c4:#dc2626; --gold:#b45309;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html{scroll-behavior:smooth}
 body{margin:0;font-family:"Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
 a{color:#1d4ed8}
 .layout{display:flex;min-height:100vh}
@@ -108,6 +108,13 @@ details .dbody li{margin:5px 0}
 .fig summary{flex-wrap:wrap;font-size:13.5px}
 .fig summary .pg{font-weight:400;font-size:11px;color:#64748b;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:999px;padding:0 8px;white-space:nowrap}
 .fig .dbody p{margin:6px 0}
+
+/* embedded slide figures */
+figure.slidefig{margin:10px 0 12px;max-width:760px}
+figure.slidefig img{width:100%;display:block;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 1px 4px rgba(15,23,42,.1);cursor:zoom-in}
+figure.slidefig figcaption{font-size:11.5px;color:#94a3b8;margin-top:4px}
+.lightbox{position:fixed;inset:0;background:rgba(10,15,30,.9);display:none;align-items:center;justify-content:center;z-index:999;cursor:zoom-out;padding:12px}
+.lightbox img{max-width:96vw;max-height:96vh;border-radius:6px;box-shadow:0 6px 40px rgba(0,0,0,.5)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0}
 .steps .st{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;font-size:13.5px}
 .steps .st .no{display:inline-block;background:#1e3a8a;color:#fff;border-radius:6px;padding:1px 10px;font-size:12px;font-weight:700;margin-bottom:6px}
@@ -116,60 +123,20 @@ details .dbody li{margin:5px 0}
 ul.tight{margin:6px 0;padding-left:22px}
 ul.tight li{margin:4px 0}
 footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
-.navtoggle{display:none}
-/* mobile: sticky collapsible nav bar */
 @media (max-width:900px){
   .layout{flex-direction:column}
-  nav.side{position:sticky;top:0;height:auto;width:100%;padding:0;z-index:60;box-shadow:0 2px 10px rgba(15,23,42,.3)}
-  .mobilebar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 12px}
-  nav.side .brand{padding:2px 0;font-size:15px}
-  nav.side .brand small{font-size:10.5px;margin-top:1px}
-  .navtoggle{display:inline-block;flex:none;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:6px 13px;font-size:13px;font-family:inherit;cursor:pointer}
-  .navtoggle:active{background:#334155}
-  nav.side.open .navtoggle{background:#1d4ed8;border-color:#3b82f6;color:#fff}
-  .navlinks{display:none;padding:4px 10px 12px;border-top:1px solid #1e293b}
-  nav.side.open .navlinks{display:block;max-height:66vh;overflow-y:auto}
-  nav.side .grp{padding:10px 12px 2px}
-  nav.side a{display:block;border-left:none;border-radius:8px;padding:9px 12px;font-size:14px}
-  nav.side a:hover{background:#1e293b}
-  main{width:100%;max-width:none;margin:0;padding:16px 14px 60px}
-  section.card{padding:16px 14px;scroll-margin-top:62px}
-}
-/* phone: compact type, mind map, tables */
-@media (max-width:700px){
-  .hero{padding:22px 16px 20px;border-radius:12px}
-  .hero h1{font-size:22px}
-  .hero .sub{font-size:12.5px}
-  h2{font-size:19px;padding-left:9px;border-left-width:5px}
-  h3{font-size:16px}
-  .qbox,.qa{padding:10px 12px}
-  details .dbody{padding:6px 12px 12px}
-  .chaptercard{padding:12px 14px}
-  .twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  table{font-size:12.5px}
-  th,td{padding:6px 8px}
-  .mtree{padding:10px 10px 12px}
-  .mhead b{font-size:14px}
-  .mtree ul.vkids{padding-left:18px}
-  .mtree ul.vkids>li::before{left:-13px;width:13px;top:18px}
-  .mtree ul.vkids>li::after{left:-13px}
-  .mtree ul.vkids>li:last-child::after{height:18px}
-  .tnode{max-width:520px;font-size:11.5px;padding:4px 8px}
-  .tn-root{font-size:12.5px}
-  .tn-1{font-size:12px;padding:5px 9px}
-  .tn-2{font-size:11.5px}
+  nav.side{position:static;width:100%;height:auto;padding:10px 0 16px}
+  nav.side a{display:inline-block;border-left:none;border-bottom:2px solid transparent;padding:5px 12px}
+  main{padding:18px 16px 60px}
+  section.card{padding:18px 16px}
   .fig summary{font-size:12.5px}
 }
 </style>
 </head>
 <body>
 <div class="layout">
-<nav class="side" id="sideNav">
-  <div class="mobilebar">
-    <div class="brand">油层物理学 · 知识库<small>Petro-Physics｜绪论～第四章</small></div>
-    <button class="navtoggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">目录 ▾</button>
-  </div>
-  <div class="navlinks" id="navLinks">
+<nav class="side">
+  <div class="brand">油层物理学 · 知识库<small>Petro-Physics｜绪论～第四章</small></div>
   <div class="grp">总览</div>
   <a href="#overview">课程概览与考核</a>
   <a href="#mainline">① 主线与结构脉络</a>
@@ -181,7 +148,6 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <a href="#numbers">必背数字表</a>
   <a href="#pitfalls">易错概念辨析</a>
   <a href="#charts">图表逐图详解</a>
-  </div>
 </nav>
 <main>
 
@@ -748,7 +714,7 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
 <!-- ===================== 附录D 图表逐图详解 ===================== -->
 <section class="card" id="charts">
   <h2 style="border-color:var(--gold)">附录 D · 课件图表逐图详解<span class="en">FIGURE-BY-FIGURE GUIDE（课件每张图/表：图上有什么 → 怎么读 → 考什么）</span></h2>
-  <p class="lead">逐条讲解课件 PPT 中承载知识点的图表（人物、风景、科普照片等装饰图不收录）。每条按 <b>图上有什么 → 怎么读 → 考点与易错</b> 三段展开；条目末的 P× 为 PPT 页码，方便翻回课件对照原图；带 <span class="imp">重点</span> 标记的图是老师标注"重要！！！"或期末高频。点击条目展开/收起。少数图片型图表（扫描图版）内部文字无法逐字辨认，已按其所在页正文与教材通用形态说明，均以"据正文/结合上下文"注明。</p>
+  <p class="lead">逐条讲解课件 PPT 中承载知识点的图表（人物、风景、科普照片等装饰图不收录）。每条按 <b>图上有什么 → 怎么读 → 考点与易错</b> 三段展开；每条已内嵌课件原页截图（点击图片可全屏放大，方便读轴标签小字）；本地单文件版图片为内嵌、本网页版图片为同目录 figs/ 文件加载；带 <span class="imp">重点</span> 标记的图是老师标注"重要！！！"或期末高频。点击条目展开/收起。少数图片型图表（扫描图版）内部文字无法逐字辨认，已按其所在页正文与教材通用形态说明，均以"据正文/结合上下文"注明。</p>
 
   <h3 style="margin-top:22px;border-left:5px solid var(--c0);padding-left:10px">绪论（P1–22）</h3>
   <p style="font-size:13px;color:#64748b;margin:4px 0 10px">以文字和照片为主，无知识点图表；课程考核构成表（P6）已整理在本库"课程概览"。</p>
@@ -757,54 +723,65 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <p style="font-size:13px;color:#64748b;margin:4px 0 10px">本章图表以"元素/组成数据表 + 分子结构图 + 分类框图"为主，考试考"规律"不考"数图"。</p>
 
   <details class="fig"><summary>1. 表1-1 原油的碳、氢元素含量表<span class="pg">P24</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p24.webp" alt="PPT 第24页原文" loading="lazy"><figcaption>课件原页 P24</figcaption></figure>
     <p><b>图上有什么：</b>12 个国内外原油样的元素分析数据（5 列）：产地、C%、H%、(C+H)%、H/C 原子比。如大庆 85.7/13.3/99.0/1.86，孤岛 84.2/11.7/95.9/1.67，罗马尼亚 87.2/11.3/98.5/1.56。</p>
     <p><b>怎么读：</b>所有样品 C 落在 83~87%、H 落在 10~14%，两元素合计约 94~99%；H/C 原子比 1.56~1.88。H/C 越大，烃类越饱和、油越轻。</p>
     <p><b>考点与易错：</b>记区间不记个例——"石油以 C、H 为主（合计 95% 左右以上）"；H/C 原子比是衡量石油"轻重"的标尺，胶质沥青质多的重质油 H/C 低。</p>
   </div></details>
 
   <details class="fig"><summary>2. 表1-2 原油含硫量对比表（图片表）<span class="pg">P25</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p25.webp" alt="PPT 第25页原文" loading="lazy"><figcaption>课件原页 P25</figcaption></figure>
     <p><b>图上有什么：</b>国内外原油含硫量对比表（以图片嵌入，表内数字不可复制）。</p>
     <p><b>怎么读：</b>结合本页正文——我国原油普遍低硫，大庆、大港含硫仅 0.12%；孤岛、江汉相对较高，属我国含硫较高的原油。</p>
     <p><b>考点与易错：</b>含硫量是<b>质量百分数</b>；为后面"低硫/含硫/高硫"三分类（0.5%、2% 界限）做铺垫。</p>
   </div></details>
 
   <details class="fig"><summary>3. 石油化合物两大类分类框图<span class="pg">P26</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p26.webp" alt="PPT 第26页原文" loading="lazy"><figcaption>课件原页 P26</figcaption></figure>
     <p><b>图上有什么：</b>分支框图：石油中的化合物 → 烃类（烷烃、环烷烃、芳香烃）＋ 非烃类（含 S、N、O 的化合物）。</p>
     <p><b>怎么读：</b>轻质油烃类含量可达 90% 以上，重质油可低到 50% 左右，其余即非烃。</p>
     <p><b>考点与易错：</b>非烃化合物都是<b>极性物质</b>——这是后续学界面张力、吸附、乳化等现象的化学根源。</p>
   </div></details>
 
   <details class="fig"><summary>4. 三类烃分子结构图组（烷烃/环烷烃/芳香烃）<span class="pg">P27–29</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p27.webp" alt="PPT 第27页原文" loading="lazy"><figcaption>课件原页 P27</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p28.webp" alt="PPT 第28页原文" loading="lazy"><figcaption>课件原页 P28</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p29.webp" alt="PPT 第29页原文" loading="lazy"><figcaption>课件原页 P29</figcaption></figure>
     <p><b>图上有什么：</b>三类饱和烃的结构式/分子模型图，环烷烃一页标注了环丙烷、环丁烷、环戊烷、环己烷。</p>
     <p><b>怎么读：</b>烷烃通式 <span class="fx">C<sub>n</sub>H<sub>2n+2</sub></span>；环烷烃是环状饱和烃，石油中大量存在五碳环（环戊烷系）和六碳环（环己烷系）；芳香烃含苯环。</p>
     <p><b>考点与易错：</b>①碳数三分：C₁₋₄ 气（天然气主要成分）、C₅₋₁₆ 液（石油主要成分）、C₁₇₊ 固（石蜡）——必背；②原油中一般<b>不含</b>烯烃、炔烃等不饱和烃；③老师划线："石油与天然气在化学组成上是同一类物质"；④分子量范围：最小甲烷 16，最大沥青质可达几千；石蜡 C17–35、地蜡 C36–55（P33）。</p>
   </div></details>
 
   <details class="fig"><summary>5. 非烃化合物结构式图组（含 S/N/O 化合物）<span class="pg">P31</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p31.webp" alt="PPT 第31页原文" loading="lazy"><figcaption>课件原页 P31</figcaption></figure>
     <p><b>图上有什么：</b>含硫、含氧、含氮化合物的示例结构式。</p>
     <p><b>怎么读：</b>S、N、O 以"杂原子"形式嵌在烃分子键位上，构成非烃化合物，全是极性物质。</p>
     <p><b>考点与易错：</b>与第 3 条呼应：极性来源→表面活性→影响界面性质。胶质的极性强即源于此。</p>
   </div></details>
 
   <details class="fig"><summary>6. 胶质、沥青质大分子示意图<span class="pg">P32</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p32.webp" alt="PPT 第32页原文" loading="lazy"><figcaption>课件原页 P32</figcaption></figure>
     <p><b>图上有什么：</b>标注"大分子、非对称、粘稠状"的大分子结构示意。</p>
     <p><b>怎么读：</b>胶质、沥青质呈胶状/沥青状存在于石油中，分子大且不对称，是原油高密度、高粘度的物质基础。</p>
     <p><b>考点与易错：</b>"对石油的性质影响很大"——具体落到表1-7：粘度与胶质沥青质含量正相关。</p>
   </div></details>
 
   <details class="fig"><summary>7. 牛顿内摩擦（平板速度梯度）示意图<span class="pg">P39</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p39.webp" alt="PPT 第39页原文" loading="lazy"><figcaption>课件原页 P39</figcaption></figure>
     <p><b>图上有什么：</b>两平行平板间流体的速度梯度示意，配牛顿粘性定律 <span class="fx">F/A = μ·dv/dy</span>。</p>
     <p><b>怎么读：</b>粘度=单位面积上剪应力与速度梯度之比；单位 Pa·s，换算 1 Pa·s=1000 mPa·s，1 mPa·s=1 cP。</p>
     <p><b>考点与易错：</b>①定义式与单位换算是计算题底工；②说粘度必须注明<b>温度</b>；③动力粘度 μ 与运动粘度 ν=μ/ρ 别混。</p>
   </div></details>
 
   <details class="fig"><summary>8. 表1-7 我国一些油田的地面原油性质大表<span class="pg">P41</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p41.webp" alt="PPT 第41页原文" loading="lazy"><figcaption>课件原页 P41</figcaption></figure>
     <p><b>图上有什么：</b>10 个油田 × 11 项性质的完整数据表：相对密度 d₄²⁰、50℃ 粘度、凝固点、含蜡量、胶质、沥青、含硫、残碳、馏分组成（初馏点、&lt;200℃、&lt;300℃）。如孤岛：0.9547 / 408.1 mPa·s / −12℃ / 胶质 27.5%；大庆 S 区：0.8753 / 15.2 / 24℃ / 含蜡 28.6%。</p>
     <p><b>怎么读：</b>横向看单油田、纵向找规律：<b>粘度 ↔ 胶质沥青质</b>同向（孤岛最粘、胶质最高）；<b>凝固点 ↔ 含蜡量</b>同向（大庆含蜡 28.6% → 凝固点 24℃；克拉玛依含蜡 2.04% → 凝固点低至 −50℃）；孤岛、江汉含硫较高（呼应表1-2）。</p>
     <p><b>考点与易错：</b>核心结论"石油物理性质的差异是其化学组成不同的反映"；考试常给两个油田数据，让你解释性质差异的原因——用"组成决定性质"的因果链作答。</p>
   </div></details>
 
   <details class="fig"><summary>9. 油气藏四级分类树状框图<span class="pg">P51</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p51.webp" alt="PPT 第51页原文" loading="lazy"><figcaption>课件原页 P51</figcaption></figure>
     <p><b>图上有什么：</b>四级树：油气藏 →（油藏、气藏）→（黑油油藏、轻质油油藏｜凝析气藏、一般气藏）→ 八个末级（重质油油藏、一般黑油油藏、高收缩油油藏、挥发油油藏｜富凝析气气藏、贫凝析气气藏、湿气气藏、干气气藏）。</p>
     <p><b>怎么读：</b>先按储集主体分油/气两大支，再逐级按流体性质细分；"轻质油油藏"＝高收缩油/挥发油（P48 按相态分类呼应）。</p>
     <p><b>考点与易错：</b>八个末级名称及归属要默写；油/气分支的判别依据在第三章相图（P110–117），前后呼应着记。</p>
@@ -814,78 +791,92 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <p style="font-size:13px;color:#64748b;margin:4px 0 10px">本章是"图版章"：Z 图版、临界参数表、Bg 曲线、粘度分区图、含水量图版全在这。P64 有一幅无文字大幅配图（位于 Z 定义与对比状态定律之间，为一组 Z 随压力变化的示意曲线）。</p>
 
   <details class="fig"><summary>10. 天然气矿藏分类框图<span class="pg">P54</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p54.webp" alt="PPT 第54页原文" loading="lazy"><figcaption>课件原页 P54</figcaption></figure>
     <p><b>图上有什么：</b>按矿藏特点的两级分类树：天然气 → 伴生气 / 非伴生气 →（气藏气、油藏气）。</p>
     <p><b>怎么读：</b>伴生气=与原油共存（气顶气、溶解气）；非伴生气=独立气藏（气藏气）。</p>
     <p><b>考点与易错：</b>下一页的干气/湿气（C₅⁺ 液体 13.5 cm³/标m³）与贫气/富气（C₃⁺ 94 cm³/标m³）界限数字在附录 B，别混用。</p>
   </div></details>
 
   <details class="fig"><summary>11. 天然气组成表示与换算示例表<span class="pg">P57–58</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p57.webp" alt="PPT 第57页原文" loading="lazy"><figcaption>课件原页 P57</figcaption></figure>
     <p><b>图上有什么：</b>示例小表：甲烷 0.71、乙烷 0.14、丙烷 0.09、丁烷 0.06（质量分数，总和 1.00），用于演示三种组成及其换算。</p>
     <p><b>怎么读：</b>摩尔组成 <span class="fx">y<sub>i</sub>=n<sub>i</sub>/n</span>、体积组成 <span class="fx">φ<sub>i</sub>=V<sub>i</sub>/V</span>、质量组成 <span class="fx">G<sub>i</sub>=w<sub>i</sub>/G</span>；质量→摩尔：<span class="fx">y<sub>i</sub>=(G<sub>i</sub>/M<sub>i</sub>)/Σ(G<sub>j</sub>/M<sub>j</sub>)</span>；体积组成=摩尔组成（标况 1 mol 气体 22.4 L）。</p>
     <p><b>考点与易错：</b>三组成换算是后面一切计算的第一步，"体积组成=摩尔组成"只对气体成立。</p>
   </div></details>
 
   <details class="fig"><summary>12. 图2-3 天然气压缩因子图版 Z=f(P<sub>r</sub>,T<sub>r</sub>)<span class="pg">P67</span><span class="imp">重点</span></summary><div class="dbody">
-    <p><b>图上有什么：</b>甲烷、乙烷、丙烷经对比态原理处理后的通用 Z 图版：横轴（视）对比压力，纵轴 Z，曲线族以（视）对比温度 T<sub>r</sub> 为参变量。</p>
+    <figure class="slidefig"><img src="figs/p67.webp" alt="PPT 第67页原文" loading="lazy"><figcaption>课件原页 P67</figcaption></figure>
+    <p><b>图上有什么：</b>甲烷、乙烷、丙烷经对比态原理处理后的通用 Z 图版（据 Standing-Katz 1942）：横轴（视）对比压力 P<sub>pr</sub>（0~15），纵轴 Z（0.3~1.1，右轴 1.2~1.7 为高压延伸段），曲线族以（视）对比温度 T<sub>pr</sub>（约 1.0~3.0）为参变量。</p>
     <p><b>怎么读：</b>求 Z 四步走：组成 → 视临界参数 P<sub>pc</sub>/T<sub>pc</sub>（加权或图版法）→ 视对比参数 P<sub>pr</sub>/T<sub>pr</sub> → 查图读 Z。曲线形态：低压区 Z 随压力升高先降（分子引力主导，Z&lt;1），过最低点后回升，高压下 Z&gt;1（分子体积/排斥主导）；T<sub>r</sub> 越低偏离 1 越显著。</p>
     <p><b>考点与易错：</b>①对比状态原理表述："相同对比状态下，各气体的 Z、粘度等内涵性质近似相同"——简答高频；②Z=V<sub>实际</sub>/V<sub>理想</sub>，是比值不是偏差量；③混合气必须用"视"参数（天然气没有真实临界点）。</p>
   </div></details>
 
   <details class="fig"><summary>13. 表2-3/2-4 烃类与非烃气体物性常数表<span class="pg">P69</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p69.webp" alt="PPT 第69页原文" loading="lazy"><figcaption>课件原页 P69</figcaption></figure>
     <p><b>图上有什么：</b>两张 8 列常数表（分子量、沸点、P<sub>c</sub>、T<sub>c</sub>、液体密度、偏心因子 ω）：表2-3 覆盖 C₁~C₁₀ 正构烷烃及 i/n-C₄、i/n-C₅；表2-4 覆盖空气、CO₂、He、H₂、H₂S、N₂、O₂、H₂O。</p>
     <p><b>怎么读：</b>同系物规律随碳数增加：分子量↑、沸点↑、T<sub>c</sub>↑、P<sub>c</sub>↓、ω↑。关键锚点值：CH₄ M=16.04、P<sub>c</sub>=4.64 MPa、T<sub>c</sub>=190.67 K；C₂H₆ 30.07/4.88/303.5；C₃H₈ 44.10/4.26/370.0；n-C₄ 58.12/3.79/425.4；CO₂ 44.01/7.38/304.17；空气 28.96≈29。</p>
     <p><b>考点与易错：</b>①算视临界参数的取数来源；②γ<sub>g</sub>=M/29 的"29"就是空气分子量；③"偏心因子 ω 的意义及应用见第三章"——记住它衡量分子偏离球形/非中心力的程度即可。</p>
   </div></details>
 
   <details class="fig"><summary>14. 经验图版法：γ<sub>g</sub> → 视临界参数图版<span class="pg">P71</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p71.webp" alt="PPT 第71页原文" loading="lazy"><figcaption>课件原页 P71</figcaption></figure>
     <p><b>图上有什么：</b>已知天然气相对密度 γ<sub>g</sub>、直接查视临界温度 T<sub>pc</sub> 与视临界压力 P<sub>pc</sub> 的经验曲线图版。</p>
     <p><b>怎么读：</b>横轴 γ<sub>g</sub>，两条曲线分别读 T<sub>pc</sub>（K）与 P<sub>pc</sub>（MPa）。适用于只知道相对密度、不知道组成的情况。</p>
     <p><b>考点与易错：</b>与加权法 <span class="fx">P<sub>pc</sub>=Σy<sub>i</sub>P<sub>ci</sub></span> 的适用场景区分：组成已知→加权法；只有 γ<sub>g</sub>→图版法。两法结果略有差异，考试按题目给的条件选。</p>
   </div></details>
 
   <details class="fig"><summary>15. Wichert 方法非烃校正图版<span class="pg">P73</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p73.webp" alt="PPT 第73页原文" loading="lazy"><figcaption>课件原页 P73</figcaption></figure>
     <p><b>图上有什么：</b>以 A（H₂S+CO₂ 摩尔分数之和）、B（H₂S 摩尔分数）为参数、查视临界温度校正值 ε 的曲线图版；配公式 <span class="fx">T′<sub>pc</sub> = T<sub>pc</sub> − ε</span>、<span class="fx">P′<sub>pc</sub> = P<sub>pc</sub>·T′<sub>pc</sub>/[T<sub>pc</sub>+n(1−n)ε]</span>（n 为 H₂S 摩尔分数）。</p>
     <p><b>怎么读：</b>含非烃时先查/算 ε，校正视临界参数，再用校正后的视对比参数查 Z。经验公式版（Wichert-Aziz，式 2-18）：<span class="fx">ε=120(A<sup>0.9</sup>−A<sup>1.6</sup>)+15(B<sup>0.5</sup>−B<sup>4</sup>)</span>。</p>
     <p><b>考点与易错：</b>最常考的是<b>免校正条件</b>：非烃体积含量&lt;5%（其中 N₂&lt;2%、CO₂&lt;1%）且 CH₄&gt;50%，否则误差大于 3%；三种校正方法（图版修正/经验公式/Eilerts 加权，后者适用非烃&gt;40%）名称对得上号即可。</p>
   </div></details>
 
   <details class="fig"><summary>16. 图2-6 某天然气气样 P–B<sub>g</sub> 关系曲线<span class="pg">P78</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p78.webp" alt="PPT 第78页原文" loading="lazy"><figcaption>课件原页 P78</figcaption></figure>
     <p><b>图上有什么：</b>120℃ 等温线的 B<sub>g</sub>–P 曲线：纵轴 B<sub>g</sub> 0~0.06 m³/标m³，横轴 P 0~120 MPa。</p>
     <p><b>怎么读：</b>B<sub>g</sub> 随压力增大而减小（近似双曲线），数量级 10⁻²~10⁻³——同一团气在地下的体积只有地面的百分之几。</p>
     <p><b>考点与易错：</b>计算题直接用公式 <span class="fx">B<sub>g</sub>=(273+t)/293 · P<sub>sc</sub>Z/P</span>；标况取 20℃、0.1 MPa；膨胀系数 E<sub>g</sub>=1/B<sub>g</sub>。别把 B<sub>g</sub> 与原油 B<sub>o</sub>（略大于 1）的量级搞混。</p>
   </div></details>
 
   <details class="fig"><summary>17. 图2-7 视对比压缩系数图版 C<sub>pr</sub>=f(P<sub>pr</sub>,T<sub>pr</sub>)<span class="pg">P81</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p81.webp" alt="PPT 第81页原文" loading="lazy"><figcaption>课件原页 P81</figcaption></figure>
     <p><b>图上有什么：</b>视对比压缩系数图版：横轴 P<sub>pr</sub>、曲线族以 T<sub>pr</sub> 为参变量、读 C<sub>pr</sub>。</p>
     <p><b>怎么读：</b>查出 C<sub>pr</sub> 后换算 <span class="fx">C<sub>g</sub>=(1/P<sub>pc</sub>)[1/P<sub>pr</sub>−(1/Z)(∂Z/∂P<sub>pr</sub>)<sub>T<sub>pr</sub></sub>]</span>；也可由定义式 C<sub>g</sub>=−(1/V)(∂V/∂P)<sub>T</sub> 理解。</p>
     <p><b>考点与易错：</b>量纲 1/MPa；气体压缩系数比原油、地层水大得多（气体弹性强），这是气驱/弹性驱动能量的来源。</p>
   </div></details>
 
   <details class="fig"><summary>18. 图2-9 气体粘度的高压区/低压区划分图<span class="pg">P82</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p82.webp" alt="PPT 第82页原文" loading="lazy"><figcaption>课件原页 P82</figcaption></figure>
     <p><b>图上有什么：</b>P<sub>r</sub>–T<sub>r</sub> 平面（横轴 0~10、纵轴 0~1.6）上一条分界曲线，把平面分成"低压区（稀气体）"与"高压区（稠气体）"两块。</p>
     <p><b>怎么读：</b>算出体系的 P<sub>r</sub>、T<sub>r</sub>，先定位落在哪个区，再套用该区的粘度规律。</p>
     <p><b>考点与易错：</b>两区规律完全相反，对照背：<b>低压区</b>——粘度与压力无关、随温度↑而↑、随分子量↑而↓（μ=ρυλ/3，分子动理学）；<b>高压区</b>——粘度随压力↑而↑、随温度↑而↓、随分子量↑而↑（像液体）。"为什么反"：机理从分子碰撞输运变为分子层间摩擦。</p>
   </div></details>
 
   <details class="fig"><summary>19. 低压气体粘度–温度曲线族 / 图2-10 大气压粘度图版<span class="pg">P84、P86</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p84.webp" alt="PPT 第84页原文" loading="lazy"><figcaption>课件原页 P84</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p86.webp" alt="PPT 第86页原文" loading="lazy"><figcaption>课件原页 P86</figcaption></figure>
     <p><b>图上有什么：</b>P84 一幅粘度–温度关系曲线图（不同分子量烃气与非烃气对比，据正文）；P86 为图2-10"大气压下单组分气体粘度"图版缩图，配混合规则 <span class="fx">μ<sub>g</sub>=Σy<sub>i</sub>μ<sub>gi</sub>M<sub>i</sub><sup>0.5</sup>/Σy<sub>i</sub>M<sub>i</sub><sup>0.5</sup></span>。</p>
     <p><b>怎么读：</b>大气压下先查各组分 μ<sub>gi</sub>，再按 <b>y<sub>i</sub>·√M<sub>i</sub></b> 加权混合；非烃气体（CO₂、H₂S、N₂）粘度偏大。</p>
     <p><b>考点与易错：</b>加权因子是 y<sub>i</sub>√M<sub>i</sub> 不是简单 y<sub>i</sub>；求高压粘度=大气压粘度×粘度比（另一图版），"两步走"流程要会说。</p>
   </div></details>
 
   <details class="fig"><summary>20. 图2-13 Mcketta-Wehe 天然气含水量图版（露点图）<span class="pg">P90</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p90.webp" alt="PPT 第90页原文" loading="lazy"><figcaption>课件原页 P90</figcaption></figure>
     <p><b>图上有什么：</b>1958 年 Mcketta-Wehe 含水量图版（又称天然气露点图），占版面约 2/3；基图 X<sub>o</sub> 对应 γ<sub>g</sub>=0.6、纯水；实际值 <span class="fx">X=X<sub>o</sub>×C<sub>s</sub>×C<sub>β</sub></span>（含盐、相对密度校正）。</p>
     <p><b>怎么读：</b>在温度–压力网格上读含水量；含水量随压力↑而↓、随温度↑而↑；含盐量↑→含水量↓；γ<sub>g</sub> 越大→含水量越少。</p>
     <p><b>考点与易错：</b>四条规律（P、T、盐、相对密度）背下来即可；绝对湿度 X=P<sub>vw</sub>/(R<sub>w</sub>T)、相对湿度 φ=P<sub>vw</sub>/P<sub>sw</sub>（公式速查表 A）。</p>
   </div></details>
 
   <details class="fig"><summary>21. 水合物笼形结构示意图<span class="pg">P92</span></summary><div class="dbody">
-    <p><b>图上有什么：</b>水合物结构示意与实物图组：水分子靠氢键构成主体笼形网络，气体分子充填在孔穴中；反应式 <span class="fx">M+nH₂O=M(H₂O)<sub>n</sub></span>。</p>
+    <figure class="slidefig"><img src="figs/p92.webp" alt="PPT 第92页原文" loading="lazy"><figcaption>课件原页 P92</figcaption></figure>
+    <p><b>图上有什么：</b>水合物结构示意与实物图组：水分子靠氢键构成主体笼形网络，气体分子充填在孔穴中；反应式 <span class="fx">M+nH₂O=M(H₂O)<sub>n</sub></span>；下排为 I 型、II 型两种晶型结构。</p>
     <p><b>怎么读：</b>结晶状笼形化合物（包络物），俗称"可燃冰"。</p>
     <p><b>考点与易错：</b>三个工程意义（P93）：潜在资源、井筒/气嘴堵塞影响流动、地面储运问题。</p>
   </div></details>
 
   <details class="fig"><summary>22. 水合物生成条件相图<span class="pg">P94</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p94.webp" alt="PPT 第94页原文" loading="lazy"><figcaption>课件原页 P94</figcaption></figure>
     <p><b>图上有什么：</b>大幅 P–T 相界线图（图内文字不在文本层，据上下文与教材通用形态）：水合物生成平衡线 + 天然气包络线，标出易生成水合物的温压区。</p>
     <p><b>怎么读：</b>水合物在<b>低温、高压</b>一侧生成——温度低于生成曲线对应温度且压力足够高时出现；"The tendency should be known"（老师原话：趋势必须知道）。</p>
     <p><b>考点与易错：</b>判断给定井筒/节流条件会不会生成水合物；防治思路即破坏其生成条件（加热、降压、注抑制剂、脱水）。</p>
@@ -895,150 +886,182 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <p style="font-size:13px;color:#64748b;margin:4px 0 10px">本章是全课程图表密度最高的一章：所有相图共用一套"泡点线/露点线/临界点"语言，先看懂图 27（包络图），后面 28–32 全是它的变体。</p>
 
   <details class="fig"><summary>23. 单组分体系 p–T 相图（乙烷）<span class="pg">P103</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p103.webp" alt="PPT 第103页原文" loading="lazy"><figcaption>课件原页 P103</figcaption></figure>
     <p><b>图上有什么：</b>p–T 图上一条单调上升的饱和蒸汽压曲线：纵轴 0~8 MPa、横轴 −100~100 ℃；曲线左侧液相区、右侧汽相区、终点以上超临界区；线上标 P<sub>b</sub>、P<sub>d</sub>。</p>
     <p><b>怎么读：</b>单组分体系泡点线与露点线<b>重合</b>为同一条蒸汽压曲线——升温或降压跨过它就沸腾，反向则凝结。曲线终点是临界点，超过后单相无法再靠加压液化。</p>
     <p><b>考点与易错：</b>泡点/露点定义必背：泡点=恒温降压中<b>第一批气泡</b>出现的压力；露点=恒温升压中<b>第一批液滴</b>出现的压力。"单组分 P<sub>b</sub>=P<sub>d</sub>、多组分才分开"是判断题常客。</p>
   </div></details>
 
   <details class="fig"><summary>24. 双组分体系环形相图<span class="pg">P104</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p104.webp" alt="PPT 第104页原文" loading="lazy"><figcaption>课件原页 P104</figcaption></figure>
     <p><b>图上有什么：</b>开口的环形包络线：CAF 为泡点线、CE 为露点线，两线交汇于临界点 C；环内为两相区。</p>
     <p><b>怎么读：</b>与单组分的本质区别——泡点线、露点线分离，出现两相区；临界点处汽液相的内涵性质（密度、粘度等与数量无关的性质）完全相同。</p>
     <p><b>考点与易错：</b>临界点不再是"最高温度/最高压力"点——环的右端另有临界凝析压力（最高点）与临界凝析温度（最右点），这一铺垫在下一张图正式展开。</p>
   </div></details>
 
   <details class="fig"><summary>25. 多组分烃类体系相包络图（本章母图）<span class="pg">P106–107</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p106.webp" alt="PPT 第106页原文" loading="lazy"><figcaption>课件原页 P106</figcaption></figure>
     <p><b>图上有什么：</b>完整包络线 a—C—p<sub>C</sub>（泡点线）+C—T（露点线）：包络内两相区、外为单相区（液相/汽相/气相）；图内虚线为<b>等液量线</b>（液相体积或摩尔百分数）；三个特征点：C 临界点、p<sub>C</sub> 临界凝析压力（包络最高点）、T 临界凝析温度（包络最右点）。</p>
     <p><b>怎么读：</b>泡点线=液相 100% 线=饱和压力线（降到它出现第一批气泡）；露点线=汽相 100% 线（升压到它出现第一批液滴）；进入两相区后用等液量线读液量份额。</p>
     <p><b>考点与易错：</b>三个点各是各的：临界点 ≠ 最高压力点 ≠ 最高温度点；"饱和压力"专指泡点压力。这是后面所有相图题的母版，务必能把五个名字标注到图上。</p>
   </div></details>
 
   <details class="fig"><summary>26. 等温反凝析区（逆行凝析）图<span class="pg">P108</span><span class="imp">重点</span></summary><div class="dbody">
-    <p><b>图上有什么：</b>包络图上一条等温竖直降压路径 A→B→D→E，叠着 0/10/20/30/40% 等液量线，最大液量点在 D 附近；旁注"挥发/凝析、降压"。</p>
+    <figure class="slidefig"><img src="figs/p108.webp" alt="PPT 第108页原文" loading="lazy"><figcaption>课件原页 P108</figcaption></figure>
+    <p><b>图上有什么：</b>包络图上一条等温竖直降压路径 A→B→D→E，叠着等液量线族（10%~70%），沿降压路径 B→D 液量由 0 增至 40%，最大液量点在 D 附近；旁注"挥发/凝析、降压"。</p>
     <p><b>怎么读：</b>A→B 单相气无相变；B→D <b>降压反而凝析</b>，液量 0→40% 增加；D→E 继续降压液量 40%→0 反而再蒸发；到 E 复为纯气。这种"压力降低反而析出液相"的反常行为即等温反凝析。</p>
     <p><b>考点与易错：</b>①反常段与最大反凝析液量点（D）要能指出；②开发对策必考——凝析气藏采用循环注气等方式保持地层压力<b>高于露点压力</b>生产，防止重烃在地层中凝析损失。</p>
   </div></details>
 
   <details class="fig"><summary>27. 等压降温反凝析区图<span class="pg">P109</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p109.webp" alt="PPT 第109页原文" loading="lazy"><figcaption>课件原页 P109</figcaption></figure>
     <p><b>图上有什么：</b>同一包络图上改作等压水平线，展示降温方向的反凝析区（配一张放大路径图）。</p>
     <p><b>怎么读：</b>与图 26 成对：竖线（等温降压）与横线（等压降温）各切出一块反常区。</p>
     <p><b>考点与易错：</b>考试问"两种反凝析"时，答"等温反凝析＋等压反凝析"并各配路径描述；等温反凝析是重点中的重点。</p>
   </div></details>
 
   <details class="fig"><summary>28. 油气藏类型判别相图（J/I/L/F/A 五点）<span class="pg">P110–111</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p110.webp" alt="PPT 第110页原文" loading="lazy"><figcaption>课件原页 P110</figcaption></figure>
     <p><b>图上有什么：</b>一张包络图上标 5 个地层条件点：J（欠饱和油藏）、I（泡点线上=饱和油藏）、L（跨泡点线=带气顶油藏）、F（气藏）、A（凝析气藏）。</p>
     <p><b>怎么读：</b>油类：地层温度低于临界温度——J 在泡点线上方（未饱和）、I 正好在泡点线上（P 为饱和压力）、L 跨线（构造高部位聚气成气顶）；气类：地层温度高于临界温度——F 全程不穿两相区，A 位于等温反凝析区上方（P 高于临界压力、T 介于 T<sub>c</sub> 与临界凝析温度之间）。</p>
     <p><b>考点与易错：</b>"判断油气藏类型"老师标了重要——判据两句话：先看地层温度相对临界温度的位置定油/气，再看地层压力相对包络线的位置定具体类型。</p>
   </div></details>
 
   <details class="fig"><summary>29. 五种油气藏的相图组（黑油/轻质油/凝析气/湿气/干气）<span class="pg">P113–117</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p113.webp" alt="PPT 第113页原文" loading="lazy"><figcaption>课件原页 P113</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p114.webp" alt="PPT 第114页原文" loading="lazy"><figcaption>课件原页 P114</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p115.webp" alt="PPT 第115页原文" loading="lazy"><figcaption>课件原页 P115</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p116.webp" alt="PPT 第116页原文" loading="lazy"><figcaption>课件原页 P116</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p117.webp" alt="PPT 第117页原文" loading="lazy"><figcaption>课件原页 P117</figcaption></figure>
     <p><b>图上有什么：</b>五张同构相图，各画一条等温降压开发线：<b>常规重质油（低收缩/黑油）</b>等液量线密集，降到点 3 时残余流体仍含约 75% 油（摩尔）；<b>轻质油（高收缩）</b>等液量线间距宽，过泡点后大量脱气；<b>凝析气藏</b>初始点 1 为单相气、降压进反凝析区；<b>湿气藏</b>地层内不进两相区、但分离器条件落入两相区（地面凝出 γ&lt;0.78 的无色轻油，GOR&lt;18000 m³/m³）；<b>干气藏</b>地层与地面都不凝析（GOR&gt;18000，理论无穷大）。</p>
     <p><b>怎么读：</b>五张图横向对比三个要素：包络线胖瘦（轻组分越多越扁）、开发线与两相区的关系（地层内是否反凝析）、分离器是否落进两相区（地面有无凝析油）。</p>
     <p><b>考点与易错：</b>①命名规则（P112 英文小结）：按临界点在包络线上的相对位置与地层条件命名；流体分子量从气藏→凝析气藏→挥发油藏→油藏递增；②<b>湿气 vs 凝析气</b>的鉴别点：地层内是否反凝析；③GOR 18000 是湿/干气分界数字。</p>
   </div></details>
 
   <details class="fig"><summary>30. CO₂ 超临界相态图<span class="pg">P118</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p118.webp" alt="PPT 第118页原文" loading="lazy"><figcaption>课件原页 P118</figcaption></figure>
     <p><b>图上有什么：</b>CO₂ 的 p–T 相图，标出临界点（31℃、7.38 MPa）与超临界区。</p>
     <p><b>怎么读：</b>超过临界温压后进入超临界态：密度似液体、粘度似气体、扩散能力强、溶解能力极好。</p>
     <p><b>考点与易错：</b>结合 PPT 列的优缺点记：优点=溶解性好增油效果佳、混相压力比其他气体低；缺点=气源成本高、易腐蚀管线设备、产出气分离需额外设备、易引起储层重质组分（沥青质）沉降伤害储层。</p>
   </div></details>
 
   <details class="fig"><summary>31. 表3-1~3-4 理想溶液相平衡计算例题组<span class="pg">P126–131</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p127.webp" alt="PPT 第127页原文" loading="lazy"><figcaption>课件原页 P127</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p129.webp" alt="PPT 第129页原文" loading="lazy"><figcaption>课件原页 P129</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p131.webp" alt="PPT 第131页原文" loading="lazy"><figcaption>课件原页 P131</figcaption></figure>
     <p><b>图上有什么：</b>同一混合物（C₃ 0.610、n-C₄ 0.280、n-C₅ 0.110）的四张计算表：<b>表3-1</b> 组成；<b>表3-2</b> 闪蒸组成试算（65.5℃、200 Psia，取 n<sub>L</sub>=0.487 使 Σy<sub>j</sub>=1，得 y<sub>j</sub>=0.771/0.194/0.035，x<sub>j</sub>=0.441/0.370/0.189）；<b>表3-3</b> 泡点压力 P<sub>b</sub>=Σz<sub>j</sub>P<sub>vj</sub>=213.5+29.4+4.1=247 Psia；<b>表3-4</b> 露点压力 P<sub>d</sub>=1/Σ(z<sub>j</sub>/P<sub>vj</sub>)=1/0.00738=136 Psia。</p>
     <p><b>怎么读：</b>P<sub>vj</sub> 从图 3-5（饱和蒸汽压图）按温度查取；试算流程五步：设 n<sub>L</sub>→算 y<sub>j</sub>→Σy<sub>j</sub>=1?→算 x<sub>j</sub>→求 n<sub>L</sub>、n<sub>g</sub>。</p>
     <p><b>考点与易错：</b>泡点是<b>加权平均</b>、露点是<b>调和平均</b>，公式形式绝不能混；结果验证 P<sub>b</sub>(247)&gt;P<sub>d</sub>(136) 合理。这套数字是期末计算题的"标尺答案"。</p>
   </div></details>
 
   <details class="fig"><summary>32. 表3-5 真实溶液试算表（例3-4）<span class="pg">P136</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p136.webp" alt="PPT 第136页原文" loading="lazy"><figcaption>课件原页 P136</figcaption></figure>
     <p><b>图上有什么：</b>试算过程表，三个方案的 y<sub>j</sub> 并排：n<sub>L</sub>=0.5→Σy<sub>j</sub>=0.992；n<sub>L</sub>=0.6→Σy<sub>j</sub>=1.010；n<sub>L</sub>=0.547→Σy<sub>j</sub>=1.000（成立）；末列 x<sub>j</sub>=y<sub>j</sub>/K<sub>j</sub>=0.488/0.344/0.168。</p>
     <p><b>怎么读：</b>与例3-1 的区别在于 K<sub>j</sub> 不再是 P<sub>vj</sub>/P，而是从图版查出的实际平衡比；试算思路不变——调 n<sub>L</sub> 至 Σy<sub>j</sub>=1。</p>
     <p><b>考点与易错：</b>"真实溶液怎么改公式"——把 P<sub>vj</sub>/P 换成 K<sub>j</sub>（查图版），计算框架完全一样。</p>
   </div></details>
 
   <details class="fig"><summary>33. 例3-5 试算 K 值数据条<span class="pg">P138</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p138.webp" alt="PPT 第138页原文" loading="lazy"><figcaption>课件原页 P138</figcaption></figure>
     <p><b>图上有什么：</b>三幅横条图片拼成的数据截图（图版/数据表截条，图内文字不可复制），页面文字仅"试算 K<sub>j</sub>""0.805""1 大气压=14.7 Psi"。</p>
     <p><b>怎么读：</b>例3-5 的配套数据——从 K 图版读取各试算压力下的 K<sub>j</sub>，代入 ΣZ<sub>j</sub>K<sub>j</sub> 判据。</p>
     <p><b>考点与易错：</b>单位换算细节：1 atm=14.7 psi；考试给英制数据别慌。</p>
   </div></details>
 
   <details class="fig"><summary>34. 图3-19 线性插值确定泡点压力<span class="pg">P139</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p139.webp" alt="PPT 第139页原文" loading="lazy"><figcaption>课件原页 P139</figcaption></figure>
     <p><b>图上有什么：</b>纵轴 ΣZ<sub>j</sub>K<sub>j</sub>（0.96~1.08）对横轴试算饱和压力（210~250 Psi）的关系点，直线内插到 ΣZ<sub>j</sub>K<sub>j</sub>=1。</p>
     <p><b>怎么读：</b>两次试算得两个点，连线与 ΣZ<sub>j</sub>K<sub>j</sub>=1 水平线的交点横坐标即泡点压力。</p>
     <p><b>考点与易错：</b>计算题最后一步的规范表述："由两次试算结果线性内插"；ΣZ<sub>j</sub>K<sub>j</sub>=1 是泡点判据、Σ(z<sub>j</sub>/K<sub>j</sub>)=1 是露点判据，别写反。</p>
   </div></details>
 
   <details class="fig"><summary>35. 表3-7 露点压力计算表（例3-6）<span class="pg">P141</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p141.webp" alt="PPT 第141页原文" loading="lazy"><figcaption>课件原页 P141</figcaption></figure>
     <p><b>图上有什么：</b>150℉、试算值 P<sub>d</sub>=141 Psia 下的 K<sub>j</sub>（2.11/0.785/0.311）与 z<sub>j</sub>/K<sub>j</sub>（0.289/0.357/0.354），合计 Σ=1.000。</p>
     <p><b>怎么读：</b>露点试算只列最终成立的方案；判据 Σ(z<sub>j</sub>/K<sub>j</sub>)=1 达成即 P<sub>d</sub>=141 Psia。</p>
     <p><b>考点与易错：</b>同一混合物 P<sub>b</sub>&gt;P<sub>d</sub> 的关系在真实体系里依然成立；露点时体系几乎全是气（n<sub>g</sub>=1）。</p>
   </div></details>
 
   <details class="fig"><summary>36. 图3-20 平衡比 K<sub>j</sub>–P 等温曲线族<span class="pg">P143–144</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p143.webp" alt="PPT 第143页原文" loading="lazy"><figcaption>课件原页 P143</figcaption></figure>
     <p><b>图上有什么：</b>lg K–lg P 等温曲线族，图上分汽相/液相区，标 K<sub>j</sub>=y<sub>j</sub>/x<sub>j</sub> 与"某一温度"；P144 复用同图讲收敛压力。</p>
     <p><b>怎么读：</b>每条曲线三段特征：①低压段斜率≈−1（K<sub>j</sub>≈P<sub>vj</sub>/P），与 K<sub>j</sub>=1 的交点=该组分在此温度下的<b>饱和蒸汽压</b>；②中压段出现最小值（<b>甲烷除外</b>）；③高压段回升并趋于收敛到 K<sub>j</sub>=1——收敛压力 P<sub>cv</sub>。温度小于体系临界温度时实验做不出 K=1 点（先经泡/露点变单相），按趋势外推到 K<sub>j</sub>=1 得"视收敛压力"，工程上统称收敛压力。</p>
     <p><b>考点与易错：</b>"收敛压力三句话"（定义/与临界压力的关系：T=T<sub>c</sub> 时即为临界压力/视收敛压力）是简答高频；甲烷无最小值是判断题坑。</p>
   </div></details>
 
   <details class="fig"><summary>37. 图3-22 NGAA K–P 图版示例（C₃，收敛压力 35 MPa）<span class="pg">P145</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p145.webp" alt="PPT 第145页原文" loading="lazy"><figcaption>课件原页 P145</figcaption></figure>
     <p><b>图上有什么：</b>美国天然气协会 NGAA（1957）K–P 图版之一：收敛压力 35.0 MPa 下丙烷的 K–P 等温线族（右侧竖幅图版）。</p>
     <p><b>怎么读：</b>K<sub>j</sub>=f(P，T，收敛压力)——查图三要素齐了才能读数；收敛压力全套分 8 档：4.2/5.6/7.0/21.0/28.5/35.0/70.0/140.0 MPa。</p>
     <p><b>考点与易错：</b>收敛压力不同→图版不同：组成越重（临界压力越低）选低收敛压力图版；考试给"组成已知"时按体系临界压力就近选档。</p>
   </div></details>
 
   <details class="fig"><summary>38. 闪蒸（接触脱气）PVT 筒降压序列图<span class="pg">P148</span></summary><div class="dbody">
-    <p><b>图上有什么：</b>一组 PVT 筒示意：从 P₁ 逐级降压到 P₅，最终到 1 大气压，气液始终共存筒内。</p>
+    <figure class="slidefig"><img src="figs/p148.webp" alt="PPT 第148页原文" loading="lazy"><figcaption>课件原页 P148</figcaption></figure>
+    <p><b>图上有什么：</b>五只 PVT 筒示意：P₁&gt;P<sub>b</sub> → P₂&gt;P<sub>b</sub> → P₃≈P<sub>b</sub> → P₄&lt;P<sub>b</sub> → P₅≪P<sub>b</sub>（最终 1 大气压），气液始终共存筒内，体积 V₁→V₅ 依次标注。</p>
     <p><b>怎么读：</b>P₁→P₅ 全程油气保持接触、气体不排出、总组成不变——这就是闪蒸分离（=接触脱气=一次脱气）的定义特征。</p>
     <p><b>考点与易错：</b>三个名称指同一过程；判别口诀"组成变不变"：闪蒸不变，多级/微分都变。</p>
   </div></details>
 
   <details class="fig"><summary>39. 图3-25 接触脱气过程 P–V 关系图<span class="pg">P149</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p149.webp" alt="PPT 第149页原文" loading="lazy"><figcaption>课件原页 P149</figcaption></figure>
     <p><b>图上有什么：</b>P–V 曲线，标出分级点 p₁~p₅、V₁~V₅ 与泡点 p<sub>b</sub>（对应体积 V<sub>b</sub>）。</p>
     <p><b>怎么读：</b>曲线在 p<sub>b</sub> 处转折：上方（高压段）陡——液相压缩性小；下方（两相段）缓——气体膨胀主导。折点即泡点压力。</p>
     <p><b>考点与易错：</b>"泡点压力怎么测"标准答案=PVT 筒恒组成膨胀实验中 P–V 关系折点（配合目测第一颗气泡）；这是实验课+简答双考点。</p>
   </div></details>
 
   <details class="fig"><summary>40. 图3-27 矿场多级脱气流程图（a 二级 / b 三级）<span class="pg">P151</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p151.webp" alt="PPT 第151页原文" loading="lazy"><figcaption>课件原页 P151</figcaption></figure>
     <p><b>图上有什么：</b>两幅流程图：(a) 二级脱气——一级分离器（3.5 MPa）→二级（0.5 MPa）→储罐（0.1 MPa）；(b) 三级脱气——三个分离器逐级降压后进储罐；每级配"压力控制＋液位控制"，各级分气分别引出（一级气、二级气、储罐气）。</p>
     <p><b>怎么读：</b>沿流程压力逐级降低、每级气液瞬时平衡后气走管线液走下级；矿场一般不超过三级。</p>
     <p><b>考点与易错：</b>多级脱气的好处=及时排走气体、减少轻质油被携带→地面获得的油多、气量少、气相对密度小；代价=设备多。典型压力 3.5/0.5/0.1 MPa 在附录 B。</p>
   </div></details>
 
   <details class="fig"><summary>41. 一次脱气与多级脱气对比表<span class="pg">P153</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p153.webp" alt="PPT 第153页原文" loading="lazy"><figcaption>课件原页 P153</figcaption></figure>
     <p><b>图上有什么：</b>三个井底油样两种脱气方式的气油比对比：罗马什金 59.6 vs 41.4（相对误差 30.6%）；次布仁斯克 83.0 vs 71.5（13.9%）；新季米特里耶夫斯克 175.4 vs 144.5（17.6%），单位 m³/m³。</p>
     <p><b>怎么读：</b>一次脱气气油比一律更高（高 13.9%~30.6%）——因为油气始终接触，按平衡比重烃也进入气相，气量大且"重"（轻质油被带走）。</p>
     <p><b>考点与易错：</b>结论+机理（用 K<sub>j</sub>=y<sub>j</sub>/x<sub>j</sub> 解释，P154 英文页原话）都考；矿场采用多级脱气的原因即此。</p>
   </div></details>
 
   <details class="fig"><summary>42. 图3-28 微分脱气过程示意图（a/b/c）<span class="pg">P155</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p155.webp" alt="PPT 第155页原文" loading="lazy"><figcaption>课件原页 P155</figcaption></figure>
     <p><b>图上有什么：</b>三个 PVT 筒状态：(a) 液体处于饱和状态 →(b) 退泵降压、气液共存 →(c) 进泵排出气体、剩余液体处于新的饱和压力；各筒标注液体/气体/摩尔数。</p>
     <p><b>怎么读：</b>每降一小级立刻把气体排走再继续降压——气体组成与液相组成时刻在变，这就是微分分离（差异分离）。</p>
     <p><b>考点与易错：</b>与闪蒸的对照（PVT 实验两种方式）：闪蒸=组成不变、气液始终接触；微分=每级排气、组成不断变化。地层内衰竭式开采近似微分脱气，地面分离器近似闪蒸。</p>
   </div></details>
 
   <details class="fig"><summary>43. 溶解度与温度关系曲线（Rs–P 等温线族）<span class="pg">P157</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p157.webp" alt="PPT 第157页原文" loading="lazy"><figcaption>课件原页 P157</figcaption></figure>
     <p><b>图上有什么：</b>不同温度下的溶解气油比–压力曲线族（图内标注不在文本层，据正文与教材通用形态）。</p>
     <p><b>怎么读：</b>温度↑→溶解气量↓，且压力越高时这种降低越显著；原因：温度↑使烃类气体的饱和蒸汽压↑，溶解能力下降。</p>
     <p><b>考点与易错：</b>R<sub>s</sub> 影响因素四件套：压力（主导，R<sub>s</sub>=αP）、温度、气体性质、原油性质——后两条见下面两图。</p>
   </div></details>
 
   <details class="fig"><summary>44. 气体相对溶解度倍数表<span class="pg">P158</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p158.webp" alt="PPT 第158页原文" loading="lazy"><figcaption>课件原页 P158</figcaption></figure>
     <p><b>图上有什么：</b>以甲烷溶解度=1 的倍数表：乙烷 5、丙烷 20、CO₂ 3.5、N₂ 0.25。</p>
     <p><b>怎么读：</b>溶解度排序：丙烷＞乙烷＞CO₂＞甲烷＞N₂。</p>
     <p><b>考点与易错：</b>重烃气比甲烷易溶、氮气最难溶——解释"天然气中重烃越多、R<sub>si</sub> 越高"。</p>
   </div></details>
 
   <details class="fig"><summary>45. 原油性质对溶解度的影响曲线<span class="pg">P159</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p159.webp" alt="PPT 第159页原文" loading="lazy"><figcaption>课件原页 P159</figcaption></figure>
     <p><b>图上有什么：</b>同一天然气在不同密度原油中的溶解度曲线族（据正文推断的对比图）。</p>
     <p><b>怎么读：</b>同样组成的天然气，在轻质油中的溶解度大于在重质油中的溶解度——轻质油轻烃组分多、极性胶质沥青质少。</p>
     <p><b>考点与易错：</b>轻质油藏 R<sub>si</sub> 高、B<sub>o</sub> 大的根源（对照 P176 数据表：R<sub>si</sub>=580 的北海油田 Bo=1.78）。</p>
   </div></details>
 
   <details class="fig"><summary>46. 溶解曲线与脱气曲线的关系图（①②③三条线）<span class="pg">P160</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p160.webp" alt="PPT 第160页原文" loading="lazy"><figcaption>课件原页 P160</figcaption></figure>
     <p><b>图上有什么：</b>一张图三条曲线：①接触脱气曲线与接触溶解曲线（<b>完全重合</b>为一条）；②微分溶解曲线；③微分脱气曲线（②③不重合）；图上标注"微分分离、微分溶解、溶解气油比、生产气油比、闪蒸分离=接触溶解"。</p>
     <p><b>怎么读：</b>接触（闪蒸）过程可逆→两线重合；微分（差异）过程每级排气/进气、组成在变→不可逆→两线分离；低压段差别大、高压段差别小。</p>
     <p><b>考点与易错：</b>"何时重合、何时不重合"就是附录 C 第 11 条的图形版；配合下面 47 条一起答。</p>
   </div></details>
 
   <details class="fig"><summary>47. 甲烷 vs 戊烷的微分溶解/脱气对比曲线<span class="pg">P161–162</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p161.webp" alt="PPT 第161页原文" loading="lazy"><figcaption>课件原页 P161</figcaption></figure>
+    <figure class="slidefig"><img src="figs/p162.webp" alt="PPT 第162页原文" loading="lazy"><figcaption>课件原页 P162</figcaption></figure>
     <p><b>图上有什么：</b>两张同构图：每张两条曲线（差异分离 differential liberation 与差异溶解 differential dissolution），分别画甲烷和戊烷。</p>
     <p><b>怎么读：</b>差异与组分挥发性有关：<b>饱和蒸汽压大的甲烷</b>两条曲线较接近；<b>饱和蒸汽压小的戊烷</b>两条曲线相差很大，且低压部分相差大、高压部分相差小（与图 46 的规律一致）。</p>
     <p><b>考点与易错：</b>答"为什么"的链条：饱和蒸汽压差→组分在气液间分配倾向不同→微分过程不可逆程度不同。</p>
@@ -1048,48 +1071,56 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <p style="font-size:13px;color:#64748b;margin:4px 0 10px">本章所有曲线图几乎都以 P<sub>b</sub> 为分界点读图——先把"分水岭"画在脑中，再看每条曲线在两段的走向。</p>
 
   <details class="fig"><summary>48. 溶解气油比 Rs–P 关系曲线<span class="pg">P169</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p169.webp" alt="PPT 第169页原文" loading="lazy"><figcaption>课件原页 P169</figcaption></figure>
     <p><b>图上有什么：</b>典型未饱和油藏的 R<sub>s</sub>–P 曲线：P&lt;P<sub>b</sub> 段随压力升高 R<sub>s</sub> 增大；P=P<sub>b</sub> 处达最大值 R<sub>si</sub>（气体全部溶解）；P&gt;P<sub>b</sub> 段水平直线不变。</p>
     <p><b>怎么读：</b>水平段的含义——油已"吃饱"，压力再高也没有多余的气可溶；所以 P≥P<sub>b</sub> 区间 R<sub>s</sub>≡R<sub>si</sub>（原始溶解气油比）。</p>
     <p><b>考点与易错：</b>定义 <span class="fx">R<sub>si</sub>=V<sub>g</sub>/V<sub>os</sub></span>（标 m³/m³，V<sub>os</sub> 为脱气后地面油体积）；易错点：以为 P&gt;P<sub>b</sub> 后 R<sub>s</sub> 继续增大——不对，是水平线。</p>
   </div></details>
 
   <details class="fig"><summary>49. 图4-3 地层油 B<sub>o</sub>、B<sub>t</sub> 与 P 的关系（含 B<sub>t</sub> 曲线图）<span class="pg">P171–172、P174</span><span class="imp">重点</span></summary><div class="dbody">
-    <p><b>图上有什么：</b>同一张图两条曲线：<b>B<sub>o</sub></b> 在 P<sub>b</sub> 处最大（Bo<sub>i</sub>）——P&lt;P<sub>b</sub> 段随 P↑ 而↑（溶解气越多体积越膨胀）、P&gt;P<sub>b</sub> 段随 P↑ 而↓（弹性压缩）；<b>B<sub>t</sub></b> 只在 P&lt;P<sub>b</sub> 存在，随 P 降低一直增大，到 P=0.1 MPa 时 B<sub>t</sub>=1+R<sub>si</sub>（最大）；图上另有"油层条件下不脱气 / 如果脱气"两条线的对比标注。</p>
+    <figure class="slidefig"><img src="figs/p171.webp" alt="PPT 第171页原文" loading="lazy"><figcaption>课件原页 P171</figcaption></figure>
+    <p><b>图上有什么：</b>同一张图两条曲线：<b>B<sub>o</sub></b> 在 P<sub>b</sub> 处最大（B<sub>ob</sub>）——P&lt;P<sub>b</sub> 段随 P↑ 而↑（溶解气越多体积越膨胀）、P&gt;P<sub>b</sub> 段随 P↑ 而↓（弹性压缩），原始压力 P<sub>i</sub> 处的值记 B<sub>oi</sub>；<b>B<sub>t</sub></b> 只在 P&lt;P<sub>b</sub> 存在，随 P 降低一直增大，到 P=0.1 MPa 时 B<sub>t</sub>=1+R<sub>si</sub>（最大）；图上另有"油层条件下不脱气 / 如果脱气"两条线的对比标注。</p>
     <p><b>怎么读：</b>以 P<sub>b</sub> 为分水岭，两段机理完全不同：左侧"溶气膨胀"主导、右侧"压缩"主导；B<sub>t</sub>=B<sub>o</sub>+(R<sub>si</sub>−R<sub>s</sub>)B<sub>g</sub> 把析出气的地下体积也折算进来。</p>
     <p><b>考点与易错：</b>①B<sub>o</sub> 最大值在 P<sub>b</sub> 处（不是原始压力处）；②B<sub>t</sub> 仅 P&lt;P<sub>b</sub> 存在，P≥P<sub>b</sub> 时 B<sub>t</sub>=B<sub>ob</sub>（老师批注"Where is Bt??"就是考这个）；③P=0.1 MPa 时 B<sub>t</sub>=1+R<sub>si</sub> 必背。</p>
   </div></details>
 
   <details class="fig"><summary>50. 我国与国外油田 R<sub>si</sub>、B<sub>o</sub>、C<sub>o</sub> 对比表<span class="pg">P176</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p176.webp" alt="PPT 第176页原文" loading="lazy"><figcaption>课件原页 P176</figcaption></figure>
     <p><b>图上有什么：</b>左右两表：我国 6 油田（R<sub>si</sub> 7.0~70.1 标m³/m³、B<sub>o</sub> 1.09~1.22、C<sub>o</sub> (7.3~10.35)×10⁻⁴ MPa⁻¹），国外 6 油田（R<sub>si</sub> 1.1~580、B<sub>o</sub> 1.05~1.78）。如大庆 P 层 48.2/1.13/7.7；北海埃克菲斯克 580/1.78；伊朗阿加贾里 190/1.42。</p>
     <p><b>怎么读：</b>R<sub>si</sub> 与 B<sub>o</sub> 同向：溶解气越多，地下膨胀越厉害；我国陆相油田 R<sub>si</sub> 普遍偏低、B<sub>o</sub> 多在 1.1 左右。</p>
     <p><b>考点与易错：</b>数据印象题（附录 B 末条）；C<sub>o</sub> 数量级 10⁻⁴ MPa⁻¹ 别记成 10⁻³。</p>
   </div></details>
 
   <details class="fig"><summary>51. 图4-5 原油粘度与温度关系（半对数）<span class="pg">P178</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p178.webp" alt="PPT 第178页原文" loading="lazy"><figcaption>课件原页 P178</figcaption></figure>
     <p><b>图上有什么：</b>半对数坐标：纵轴对数粘度 0.1~10000 mPa·s，横轴温度 0~300 ℃；三条曲线：水、相对密度 0.8762 原油、相对密度 0.9861 原油。</p>
     <p><b>怎么读：</b>三条曲线都随温度单调下降（半对数坐标下近直线）；密度越大（0.9861 那条）曲线越高、粘度越大；有的原油升温 10℃ 粘度约降一半（对温度极敏感）。</p>
     <p><b>考点与易错：</b>"粘度对温度敏感"是稠油热采的物性依据；说粘度必须带温度（呼应第一章 P39）。</p>
   </div></details>
 
   <details class="fig"><summary>52. 压力对地层原油粘度的影响曲线（μ–P）<span class="pg">P179</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p179.webp" alt="PPT 第179页原文" loading="lazy"><figcaption>课件原页 P179</figcaption></figure>
     <p><b>图上有什么：</b>μ–P 曲线以 P<sub>b</sub> 为界分两段（图内标注不可见，据正文"以饱和压力为界，不同区间段影响不同"）。</p>
     <p><b>怎么读：</b>P&gt;P<sub>b</sub> 段：降压→弹性膨胀→粘度↓；P&lt;P<sub>b</sub> 段：降压→脱气→液相变"重"→粘度随压力降低反而↑。即 μ 在 P<sub>b</sub> 处取得最小值，曲线呈"V 字"。</p>
     <p><b>考点与易错：</b>"粘度最小点在 P<sub>b</sub>处"是判断题陷阱；与 B<sub>o</sub> 在 P<sub>b</sub> 处最大、R<sub>s</sub> 在 P<sub>b</sub> 处最大放一起对照记忆。</p>
   </div></details>
 
   <details class="fig"><summary>53. 典型未饱和油藏高压物性参数随 P 变化汇总图<span class="pg">P180</span><span class="imp">重点</span></summary><div class="dbody">
-    <p><b>图上有什么：</b>本章各参数曲线的"全家福"：R<sub>s</sub>、B<sub>o</sub>、B<sub>t</sub>、C<sub>o</sub>、μ<sub>o</sub> 等随压力的变化曲线族；老师批注"Where is Bt??"。</p>
+    <figure class="slidefig"><img src="figs/p180.webp" alt="PPT 第180页原文" loading="lazy"><figcaption>课件原页 P180</figcaption></figure>
+    <p><b>图上有什么：</b>图4-7"全家福"：五条曲线——原油相对密度 ρ<sub>o</sub>、体积系数 B<sub>o</sub>、气油比 GOR（即 R<sub>s</sub>）、气体相对密度 ρ<sub>g</sub>、原油粘度 μ<sub>o</sub>——都以图中标 A 的虚线（泡点）为转折；老师批注"Where is Bt??"。</p>
     <p><b>怎么读：</b>逐条复述规律，全部以 P<sub>b</sub> 为界；"Where is Bt??"的答案——P≥P<sub>b</sub> 区间没有独立的两相体积系数（B<sub>t</sub>=B<sub>ob</sub>），所以图上 P<sub>b</sub> 右侧找不到 B<sub>t</sub> 曲线。</p>
     <p><b>考点与易错：</b>综合分析题高发区：给你一条无标注曲线+压力轴，判断它是哪个参数——抓"在 P<sub>b</sub> 处的形态"（最大/最小/水平/转折）逐一排除。</p>
   </div></details>
 
   <details class="fig"><summary>54. 表1-12 地层中常见离子的化合当量表<span class="pg">P184</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p184.webp" alt="PPT 第184页原文" loading="lazy"><figcaption>课件原页 P184</figcaption></figure>
     <p><b>图上有什么：</b>双栏离子表（阳离子/阴离子各 8 种）及化合当量：Ca²⁺ 20、Mg²⁺ 12.2、Na⁺ 23、Cl⁻ 35.3、SO₄²⁻ 48、HCO₃⁻ 61、CO₃²⁻ 30 等；附算例：Cl⁻ 7896 mg/L ÷ 35.3 = 225.6 毫克当量/升。</p>
     <p><b>怎么读：</b>化合当量=原子量/离子价数；毫克当量浓度=离子浓度(mg/L)÷化合当量。</p>
     <p><b>考点与易错：</b>这是苏林判别的<b>前置计算</b>；老师标"重要！！！"——考试必须先换算成毫克当量浓度再判水型。</p>
   </div></details>
 
   <details class="fig"><summary>55. 表1-14 苏林水型判别表<span class="pg">P187</span><span class="imp">重点</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p187.webp" alt="PPT 第187页原文" loading="lazy"><figcaption>课件原页 P187</figcaption></figure>
     <p><b>图上有什么：</b>四行判别表（成因系数→水型→环境）：</p>
     <table>
       <tr><th>当量比条件</th><th>水型</th><th>环境</th></tr>
@@ -1103,36 +1134,42 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   </div></details>
 
   <details class="fig"><summary>56. 表1-13 我国和外国油田地层水化学成分与水型表<span class="pg">P188</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p188.webp" alt="PPT 第188页原文" loading="lazy"><figcaption>课件原页 P188</figcaption></figure>
     <p><b>图上有什么：</b>7 个油田地层水全分析表（10 列）：总矿化度 178~95313 mg/L、六大离子浓度、水型。如胜利 M 层 17960 mg/L→CaCl₂；任丘 Pz 层 178 mg/L→MgCl₂；孤岛 M 层 3228→NaHCO₃；东德克萨斯 64725→CaCl₂；加奇萨兰 95313→CaCl₂；凡尔马斯 5643→NaHCO₃。</p>
     <p><b>怎么读：</b>横看单油田离子构成，纵看水型与矿化度的关系：深层封闭环境的 CaCl₂ 型水往往矿化度最高。</p>
     <p><b>考点与易错：</b>结合表 55 练"给分析数据判水型"（老师布置的 Example 1-1、HW1.23 就是这种题）。</p>
   </div></details>
 
   <details class="fig"><summary>57. 天然气在地层水中的溶解度图版<span class="pg">P190</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p190.webp" alt="PPT 第190页原文" loading="lazy"><figcaption>课件原页 P190</figcaption></figure>
     <p><b>图上有什么：</b>溶解度图版（页面右半大幅）＋校正关系 R<sub>s</sub>′=R<sub>s</sub>×C（C 为含盐校正系数）。</p>
     <p><b>怎么读：</b>天然气在水中的溶解度数量级远小于在油中；压力↑溶解度↑，矿化度↑溶解度↓。</p>
     <p><b>考点与易错：</b>油 vs 水的溶气能力对比是选择题常客（水难溶气）。</p>
   </div></details>
 
   <details class="fig"><summary>58. 图4-9 地层水压缩系数 C<sub>w</sub> 与压力、温度、溶气量的关系<span class="pg">P192</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p192.webp" alt="PPT 第192页原文" loading="lazy"><figcaption>课件原页 P192</figcaption></figure>
     <p><b>图上有什么：</b>C<sub>w</sub> 曲线族（横贯整页的宽幅图版）；校正关系 C<sub>w</sub>′=C<sub>w</sub>×C（溶气校正）。</p>
     <p><b>怎么读：</b>C<sub>w</sub> 数量级约 (3.7~5)×10⁻⁴ MPa⁻¹；溶解气使 C<sub>w</sub> 增大（查校正曲线）。</p>
     <p><b>考点与易错：</b>"计算油藏弹性能量时，地层水的弹性相当重要"——水压驱动的物性依据；与 C<sub>g</sub>（大得多）、C<sub>o</sub>（同量级偏大）比大小。</p>
   </div></details>
 
   <details class="fig"><summary>59. 地层水体积系数与温度、压力关系图<span class="pg">P194</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p194.webp" alt="PPT 第194页原文" loading="lazy"><figcaption>课件原页 P194</figcaption></figure>
     <p><b>图上有什么：</b>B<sub>w</sub> 随 T、P（及溶气量）变化的关系图（族）。</p>
     <p><b>怎么读：</b>B<sub>w</sub> 随温度↑而↑、随压力↑而↓；数值仅 1.0~1.07 左右——远小于 B<sub>o</sub>。</p>
     <p><b>考点与易错：</b>别把"B<sub>w</sub> 随温度增大"与"B<sub>o</sub>"的规律弄混：B<sub>o</sub> 随温度总体也是变化但主要受溶气控制；B<sub>w</sub> 的两个方向（T↑、P↓）是 PPT 原文结论。</p>
   </div></details>
 
   <details class="fig"><summary>60. 地层水粘度图<span class="pg">P195</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p195.webp" alt="PPT 第195页原文" loading="lazy"><figcaption>课件原页 P195</figcaption></figure>
     <p><b>图上有什么：</b>μ<sub>w</sub>–T 曲线（不同矿化度/压力条件）。</p>
     <p><b>怎么读：</b>三条结论：温度↑粘度大大降低；压力影响甚微；矿化度↑粘度↑。</p>
     <p><b>考点与易错：</b>与原油粘度对照：原油在 P&lt;P<sub>b</sub> 段对压力敏感（脱气变稠），水对压力几乎不敏感。</p>
   </div></details>
 
   <details class="fig"><summary>61. 图4-14 地层油高压物性分析流程示意图<span class="pg">P197</span></summary><div class="dbody">
+    <figure class="slidefig"><img src="figs/p197.webp" alt="PPT 第197页原文" loading="lazy"><figcaption>课件原页 P197</figcaption></figure>
     <p><b>图上有什么：</b>多级框图：流体取样（分<b>地面取样法/井下取样法</b>两支）→ 样品质检（气油比检验、流体组分分析、分离器液体收缩率测定）→ PVT 实验（P–V 关系与泡点压力、接触脱气、差异脱气、粘度测定）→ 试井和取样数据评价。</p>
     <p><b>怎么读：</b>两条取样路线目的不同：井下样（保持地层条件）测泡点压力、压缩系数等；地面样配分离器数据求原始气油比、体积系数、密度。</p>
     <p><b>考点与易错：</b>流程题/实验课考点；与第三章"接触脱气、差异脱气"术语一一对应。</p>
@@ -1143,29 +1180,16 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
 <footer>基于课程 PPT《0-4章-油层物理学》（中国石油大学（北京）· 于海洋 · 2026 秋，204 页）整理生成 · 页码为 PPT 页码 · 建议配合教材杨胜来《油层物理学》使用 · 生成日期 2026-09-27 · 2026-10-07 增补"图表逐图详解"附录</footer>
 </main>
 </div>
+
+<div class="lightbox" id="lightbox"><img src="" alt=""></div>
 <script>
 (function(){
-  var nav=document.getElementById('sideNav'),
-      btn=document.getElementById('navToggle'),
-      links=document.getElementById('navLinks');
-  btn.addEventListener('click',function(){
-    var open=nav.classList.toggle('open');
-    btn.setAttribute('aria-expanded',open?'true':'false');
-    btn.textContent=open?'收起 ▴':'目录 ▾';
+  var lb=document.getElementById('lightbox'), im=lb.querySelector('img');
+  document.querySelectorAll('figure.slidefig img').forEach(function(t){
+    t.addEventListener('click',function(){ im.src=t.src; lb.style.display='flex'; });
   });
-  links.addEventListener('click',function(e){
-    if(e.target.closest('a')){
-      nav.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
-      btn.textContent='目录 ▾';
-    }
-  });
-  document.querySelectorAll('table').forEach(function(t){
-    var w=document.createElement('div');
-    w.className='twrap';
-    t.parentNode.insertBefore(w,t);
-    w.appendChild(t);
-  });
+  lb.addEventListener('click',function(){ lb.style.display='none'; im.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.style.display='none'; im.src=''; } });
 })();
 </script>
 </body>
