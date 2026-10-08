@@ -10,7 +10,7 @@
   --c0:#475569; --c1:#2563eb; --c2:#059669; --c3:#d97706; --c4:#dc2626; --gold:#b45309;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;font-family:"Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
 a{color:#1d4ed8}
 .layout{display:flex;min-height:100vh}
@@ -123,20 +123,60 @@ figure.slidefig figcaption{font-size:11.5px;color:#94a3b8;margin-top:4px}
 ul.tight{margin:6px 0;padding-left:22px}
 ul.tight li{margin:4px 0}
 footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
+.navtoggle{display:none}
+/* mobile: sticky collapsible nav bar */
 @media (max-width:900px){
   .layout{flex-direction:column}
-  nav.side{position:static;width:100%;height:auto;padding:10px 0 16px}
-  nav.side a{display:inline-block;border-left:none;border-bottom:2px solid transparent;padding:5px 12px}
-  main{padding:18px 16px 60px}
-  section.card{padding:18px 16px}
+  nav.side{position:sticky;top:0;height:auto;width:100%;padding:0;z-index:60;box-shadow:0 2px 10px rgba(15,23,42,.3)}
+  .mobilebar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 12px}
+  nav.side .brand{padding:2px 0;font-size:15px}
+  nav.side .brand small{font-size:10.5px;margin-top:1px}
+  .navtoggle{display:inline-block;flex:none;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:6px 13px;font-size:13px;font-family:inherit;cursor:pointer}
+  .navtoggle:active{background:#334155}
+  nav.side.open .navtoggle{background:#1d4ed8;border-color:#3b82f6;color:#fff}
+  .navlinks{display:none;padding:4px 10px 12px;border-top:1px solid #1e293b}
+  nav.side.open .navlinks{display:block;max-height:66vh;overflow-y:auto}
+  nav.side .grp{padding:10px 12px 2px}
+  nav.side a{display:block;border-left:none;border-radius:8px;padding:9px 12px;font-size:14px}
+  nav.side a:hover{background:#1e293b}
+  main{width:100%;max-width:none;margin:0;padding:16px 14px 60px}
+  section.card{padding:16px 14px;scroll-margin-top:62px}
   .fig summary{font-size:12.5px}
+}
+/* phone: compact type, mind map, tables */
+@media (max-width:700px){
+  .hero{padding:22px 16px 20px;border-radius:12px}
+  .hero h1{font-size:22px}
+  .hero .sub{font-size:12.5px}
+  h2{font-size:19px;padding-left:9px;border-left-width:5px}
+  h3{font-size:16px}
+  .qbox,.qa{padding:10px 12px}
+  details .dbody{padding:6px 12px 12px}
+  .chaptercard{padding:12px 14px}
+  .twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{font-size:12.5px}
+  th,td{padding:6px 8px}
+  .mtree{padding:10px 10px 12px}
+  .mhead b{font-size:14px}
+  .mtree ul.vkids{padding-left:18px}
+  .mtree ul.vkids>li::before{left:-13px;width:13px;top:18px}
+  .mtree ul.vkids>li::after{left:-13px}
+  .mtree ul.vkids>li:last-child::after{height:18px}
+  .tnode{max-width:520px;font-size:11.5px;padding:4px 8px}
+  .tn-root{font-size:12.5px}
+  .tn-1{font-size:12px;padding:5px 9px}
+  .tn-2{font-size:11.5px}
 }
 </style>
 </head>
 <body>
 <div class="layout">
-<nav class="side">
-  <div class="brand">油层物理学 · 知识库<small>Petro-Physics｜绪论～第四章</small></div>
+<nav class="side" id="sideNav">
+  <div class="mobilebar">
+    <div class="brand">油层物理学 · 知识库<small>Petro-Physics｜绪论～第四章</small></div>
+    <button class="navtoggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">目录 ▾</button>
+  </div>
+  <div class="navlinks" id="navLinks">
   <div class="grp">总览</div>
   <a href="#overview">课程概览与考核</a>
   <a href="#mainline">① 主线与结构脉络</a>
@@ -148,6 +188,9 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
   <a href="#numbers">必背数字表</a>
   <a href="#pitfalls">易错概念辨析</a>
   <a href="#charts">图表逐图详解</a>
+  <div class="grp">习题</div>
+  <a href="homework-ch2.html">第二章习题详解（标注版）</a>
+  </div>
 </nav>
 <main>
 
@@ -1182,6 +1225,31 @@ footer{color:#94a3b8;font-size:12.5px;text-align:center;padding:8px 0 30px}
 </div>
 
 <div class="lightbox" id="lightbox"><img src="" alt=""></div>
+<script>
+(function(){
+  var nav=document.getElementById('sideNav'),
+      btn=document.getElementById('navToggle'),
+      links=document.getElementById('navLinks');
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.textContent=open?'收起 ▴':'目录 ▾';
+  });
+  links.addEventListener('click',function(e){
+    if(e.target.closest('a')){
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      btn.textContent='目录 ▾';
+    }
+  });
+  document.querySelectorAll('table').forEach(function(t){
+    var w=document.createElement('div');
+    w.className='twrap';
+    t.parentNode.insertBefore(w,t);
+    w.appendChild(t);
+  });
+})();
+</script>
 <script>
 (function(){
   var lb=document.getElementById('lightbox'), im=lb.querySelector('img');
