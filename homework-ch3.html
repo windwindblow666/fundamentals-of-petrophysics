@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>第三章 油气藏烃类的相态和汽液平衡 · 习题详解（标注版）</title>
+<style>
+:root{
+  --bg:#eef2f7; --card:#ffffff; --ink:#1e293b; --ink2:#334155; --muted:#64748b;
+  --line:#cbd5e1; --line2:#e2e8f0; --th:#1e3a8a; --zebra:#f8fafc;
+  --blue:#2563eb; --blue10:#dbeafe; --red:#dc2626; --redbg:#fef2f2; --redline:#fecaca;
+  --green:#059669; --greenbg:#ecfdf5; --greenline:#34d399;
+  --amberbg:#fffbeb; --amberline:#fde68a; --amberink:#92400e;
+  --qbg:#f0f9ff; --qline:#0284c7; --tocbg:rgba(238,242,247,.94);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b1220; --card:#131c2e; --ink:#dbe4f2; --ink2:#b7c5dc; --muted:#8fa3c0;
+    --line:#2a3852; --line2:#212e46; --th:#274690; --zebra:#0f1830;
+    --blue:#60a5fa; --blue10:#1c2a4a; --red:#f87171; --redbg:#2b1a1d; --redline:#7f2428;
+    --green:#34d399; --greenbg:#0d2b22; --greenline:#1d5c46;
+    --amberbg:#2b2210; --amberline:#8a5a13; --amberink:#fcd34d;
+    --qbg:#0e2033; --qline:#38bdf8; --tocbg:rgba(11,18,32,.94);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Segoe UI",sans-serif;
+  line-height:1.8;font-size:15.5px;-webkit-text-size-adjust:100%}
+.wrap{max-width:880px;margin:0 auto;padding:0 14px 90px}
+@media(min-width:760px){.wrap{padding:0 24px 90px}}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(120deg,#0f172a 0%,#1e3a8a 60%,#334155 100%);
+  border-radius:14px;color:#fff;padding:26px 18px 22px;margin:16px 0;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
+  background:linear-gradient(90deg,#eab308 0 33%,#dc2626 33% 66%,#1d4ed8 66% 100%)}
+.hero h1{margin:0 0 6px;font-size:clamp(19px,5.4vw,25px);letter-spacing:.02em}
+.hero .sub{color:#cbd5e1;font-size:13.5px}
+.hero .chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+.hero .chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;padding:3px 12px;font-size:12px}
+
+/* ---------- 顶部粘性目录 ---------- */
+.toc{position:sticky;top:0;z-index:50;background:var(--tocbg);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:0 -14px;padding:8px 14px 9px}
+@media(min-width:760px){.toc{margin:0 -24px;padding:8px 24px 9px}}
+.toc .row{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none}
+.toc .row::-webkit-scrollbar{display:none}
+.toc a{flex:none;display:inline-flex;align-items:center;gap:5px;min-height:38px;
+  padding:7px 13px;border-radius:999px;background:var(--card);border:1px solid var(--line);
+  color:var(--ink2);text-decoration:none;font-size:13px;white-space:nowrap}
+.toc a b{color:var(--blue);font-weight:700}
+
+/* ---------- 卡片 ---------- */
+.card{background:var(--card);border-radius:14px;padding:14px 14px 18px;margin:16px 0;
+  box-shadow:0 1px 3px rgba(15,23,42,.10);scroll-margin-top:62px}
+@media(min-width:760px){.card{padding:20px 26px 24px}}
+details.prob{border:none;background:none;border-radius:0;margin:0;padding:0;overflow:visible}
+details.prob>summary{list-style:none;cursor:pointer;display:flex;align-items:center;
+  gap:8px;flex-wrap:wrap;padding:8px 2px 12px;-webkit-tap-highlight-color:transparent;user-select:none}
+details.prob>summary::-webkit-details-marker{display:none}
+details.prob>summary .pno{flex:none;width:30px;height:30px;border-radius:50%;background:var(--th);
+  color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+details.prob>summary h2{flex:1 1 200px;margin:0;font-size:16.5px;line-height:1.45;color:var(--ink)}
+details.prob>summary .ptag{flex:none;font-size:11.5px;color:var(--muted);
+  background:var(--zebra);border:1px solid var(--line2);border-radius:999px;padding:1px 10px}
+details.prob>summary .pre{flex:1 1 100%;font-size:12.3px;color:var(--muted);
+  border-left:3px solid var(--green);padding-left:8px;margin-left:38px}
+details.prob>summary::after{content:"▾";color:var(--muted);font-size:13px;flex:none;
+  transition:transform .15s}
+details.prob:not([open])>summary::after{transform:rotate(-90deg)}
+details.prob[open]>summary .pre{display:none}
+
+/* ---------- 内容模块 ---------- */
+.qbox{background:var(--qbg);border-left:5px solid var(--qline);border-radius:0 10px 10px 0;
+  padding:10px 14px;margin:10px 0;font-size:14.2px}
+.qbox .lb{font-weight:800;color:var(--qline);display:block;font-size:12.5px;
+  letter-spacing:.08em;margin-bottom:3px}
+.meth{background:var(--zebra);border-left:5px solid var(--blue);border-radius:0 10px 10px 0;
+  padding:10px 14px;margin:12px 0;font-size:14.2px}
+.meth .lb{font-weight:800;color:var(--blue);display:block;font-size:12.5px;
+  letter-spacing:.08em;margin-bottom:3px}
+.warn{background:var(--redbg);border-left:5px solid var(--red);border-radius:0 10px 10px 0;
+  padding:10px 14px;margin:12px 0;font-size:14.2px}
+.warn .lb{font-weight:800;color:var(--red);display:block;font-size:12.5px;
+  letter-spacing:.08em;margin-bottom:3px}
+.ans{background:var(--greenbg);border:1.5px solid var(--greenline);border-radius:12px;
+  padding:12px 16px;margin:14px 0;font-size:14.6px}
+.ans .lb{font-weight:800;color:var(--green);font-size:12.5px;letter-spacing:.08em;
+  display:block;margin-bottom:4px}
+.keys{background:var(--amberbg);border:1px solid var(--amberline);border-radius:12px;
+  padding:12px 16px 12px 14px;margin:14px 0;font-size:14px}
+.keys .lb{font-weight:800;color:var(--amberink);font-size:12.5px;letter-spacing:.08em;
+  display:block;margin-bottom:6px}
+.keys ol{margin:0;padding-left:20px}
+.keys li{margin:7px 0}
+.keys li b{color:var(--amberink)}
+
+/* ---------- 表格 ---------- */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line2);
+  border-radius:10px;margin:10px 0 4px;background:var(--card)}
+.tbl-wrap table{margin:0}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.8px}
+table.c5{min-width:520px}
+th,td{border:1px solid var(--line2);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--th);color:#fff;font-weight:600;white-space:nowrap}
+tr:nth-child(even) td{background:var(--zebra)}
+tr.tot td{background:var(--blue10);font-weight:800;color:var(--ink)}
+.tnote{font-size:12.3px;color:var(--muted);margin:2px 0 8px}
+
+/* ---------- 公式与步骤 ---------- */
+.fx{display:inline-block;font-family:"Cambria Math",Cambria,"Times New Roman",Georgia,serif;
+  font-style:italic;background:var(--zebra);border:1px solid var(--line2);border-radius:6px;
+  padding:1px 8px;font-size:14.8px;line-height:1.7;margin:2px 1px}
+.fx b{font-style:normal;font-weight:700}
+.fx sub,.fx sup{font-size:.72em}
+.steps{margin:12px 0}
+.steps .st{display:flex;gap:10px;margin:8px 0;font-size:14.2px}
+.steps .st .no{flex:none;width:25px;height:25px;border-radius:8px;background:var(--blue);
+  color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;
+  justify-content:center;margin-top:3px}
+.steps .st .tt{font-weight:700;color:var(--ink)}
+.ruler{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.ruler .rk{background:var(--card);border:1px solid var(--line);color:var(--ink2);
+  border-radius:8px;padding:3px 10px;font-size:13px}
+
+/* ---------- 图 ---------- */
+.fig{background:#ffffff;border:1px solid var(--line2);border-radius:12px;
+  padding:10px 8px 6px;margin:12px 0}
+.fig svg{width:100%;height:auto;display:block}
+.figcap{font-size:12.3px;color:var(--muted);text-align:center;margin:2px 0 8px}
+
+/* ---------- 附录 / 页脚 ---------- */
+.appx{background:var(--card);border-radius:14px;margin:16px 0;
+  box-shadow:0 1px 3px rgba(15,23,42,.10);scroll-margin-top:62px}
+details.appx>summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:800;
+  font-size:15.5px;color:var(--ink);display:flex;align-items:center;gap:8px;
+  -webkit-tap-highlight-color:transparent}
+details.appx>summary::before{content:"▸";color:var(--muted);transition:transform .15s}
+details.appx[open]>summary::before{transform:rotate(90deg)}
+details.appx .abody{padding:4px 16px 16px;font-size:14px}
+.foot{color:var(--muted);font-size:12.5px;margin-top:24px;border-top:1px solid var(--line);
+  padding-top:14px;line-height:1.9}
+
+@media print{
+  .toc{display:none}
+  body{background:#fff;font-size:13px}
+  .card,.appx{box-shadow:none;border:1px solid #d7dee8;break-inside:avoid-page}
+  .hero{background:#1e3a8a}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <h1>第三章 油气藏烃类的相态和汽液平衡 · 课后习题详解</h1>
+  <div class="sub">标注版解题过程：每题含<b>思路·方法</b>、分步计算、<b>答案</b>与<b>要点标注</b>（含易错点与物理意义）｜第 8～11 题（相平衡计算四连）</div>
+  <div class="chips">
+    <span class="chip">共 4 题（第 8～11 题）</span>
+    <span class="chip">📱 手机适配</span>
+    <span class="chip">数值经脚本复核</span>
+    <span class="chip">K 值：Wilson 公式（与附录 4 平衡常数数据同体系）</span>
+  </div>
+</div>
+
+<nav class="toc" aria-label="题目目录">
+  <div class="row">
+    <a href="#p8"><b>8</b> 闪蒸两相组成</a>
+    <a href="#p9"><b>9</b> 泡点压力</a>
+    <a href="#p10"><b>10</b> 露点压力</a>
+    <a href="#p11"><b>11</b> 微分汽化</a>
+    <a href="#appx"><b>📎</b> 附录</a>
+  </div>
+</nav>
+
+<!-- ================= K 值说明卡 ================= -->
+<section class="card" id="knote">
+<details class="prob" open>
+<summary><span class="pno">K</span><h2>先看懂“平衡比 K 值”——四道题共用的工具</h2><span class="ptag">共用基础</span>
+<span class="pre">K<sub>i</sub>=y<sub>i</sub>/x<sub>i</sub>；本题组用 Wilson 公式重建附录 4 数据，题 9 结果与原版题解 68 psia 吻合</span></summary>
+<div class="pbody">
+<div class="meth"><span class="lb">方法标注</span>
+<b>平衡比（ equilibrium ratio ）</b>：<span class="fx">K<sub>i</sub> = y<sub>i</sub>/x<sub>i</sub></span>（组分 i 在气相与液相中的摩尔分数之比）。同一温度、压力下每个组分有一个 K 值：<b>K&gt;1 的组分倾向进气体（轻烃），K&lt;1 倾向进液体（重烃）</b>。附录 4 给出不同 T、p 下各组分的 K 值（图版/数据表），查值后配合相态方程即可解全部四题。<br>
+本页 K 值用与附录 4 同体系的 <b>Wilson 经验公式</b>重建（便于复核、避免读图误差）：</div>
+<p style="text-align:center;margin:6px 0"><span class="fx">K<sub>i</sub> = (P<sub>ci</sub>/p) · exp[5.37(1+ω<sub>i</sub>)(1 − T<sub>ci</sub>/T)]</span></p>
+<p class="tnote" style="text-align:center">P<sub>ci</sub>、T<sub>ci</sub>：组分临界压力/临界温度；ω<sub>i</sub>：偏心因子（数值见文末附录）</p>
+<div class="warn"><span class="lb">口径说明（重要）</span>
+① 手工查附录 4 图版允许读数误差，若你读出的 K 与本页略有出入，<b>把你的 K 代入完全相同的流程即可</b>，方法分不变；② 题 9 的计算结果与该题英文原版（McCain《The Properties of Petroleum Fluids》习题）题解的 <b>68 psia</b> 一致，可放心对照；③ 题 11 中 Wilson 公式对含甲烷体系估算泡点偏高（算得 5.7 MPa，题给 4.1 MPa），题内已按题给泡点做了标定，见该题说明。</div>
+</div>
+</details>
+</section>
+
+<!-- ================= 第 8 题 ================= -->
+<section class="card" id="p8">
+<details class="prob" open>
+<summary><span class="pno">8</span><h2>等温闪蒸：求 71.1℃、1.7MPa 下气液两相的组成</h2><span class="ptag">相平衡计算</span>
+<span class="pre">答案：汽相摩尔分率 V≈0.54；液相 x = 0.495/0.415/0.091，气相 y = 0.781/0.203/0.016</span></summary>
+<div class="pbody">
+<div class="qbox"><span class="lb">题目</span>
+某混合物总组成如下，在 71.1℃、1.7MPa 下处于气液平衡。试计算气、液两相的组成（平衡比数据查附录 4）。<br>
+丙烷 C₃H₈ 0.650、正丁烷 n-C₄H₁₀ 0.300、正戊烷 n-C₅H₁₂ 0.050（摩尔分数，合计 1.000）。</div>
+<div class="meth"><span class="lb">思路 · 方法标注</span>
+这是<b>等温闪蒸</b>（flash）标准题，四步走：<br>
+① <b>判相区</b>：算 <span class="fx">Σz<sub>i</sub>K<sub>i</sub></span> 与 <span class="fx">Σz<sub>i</sub>/K<sub>i</sub></span>。两者都 &gt;1 ⇒ 两相区（若 ΣzK≤1 全液，Σz/K≤1 全气）；<br>
+② <b>求汽化分率 V</b>（汽相摩尔分数）：解 Rachford–Rice 方程 <span class="fx">Σ z<sub>i</sub>(K<sub>i</sub>−1)/[1+(K<sub>i</sub>−1)V] = 0</span>（试差）；<br>
+③ <b>求两相组成</b>：<span class="fx">x<sub>i</sub> = z<sub>i</sub>/[1+(K<sub>i</sub>−1)V]</span>，<span class="fx">y<sub>i</sub> = K<sub>i</sub>x<sub>i</sub></span>；<br>
+④ <b>归一化校核</b>：Σx=1、Σy=1（必做）。</div>
+<div class="tbl-wrap"><table class="c5">
+<tr><th>组分</th><th>z<sub>i</sub></th><th>K<sub>i</sub>（71.1℃/1.7MPa）</th><th>z<sub>i</sub>K<sub>i</sub></th><th>z<sub>i</sub>/K<sub>i</sub></th></tr>
+<tr><td>丙烷 C₃H₈</td><td>0.650</td><td>1.579</td><td>1.0264</td><td>0.4116</td></tr>
+<tr><td>正丁烷 n-C₄H₁₀</td><td>0.300</td><td>0.491</td><td>0.1472</td><td>0.6112</td></tr>
+<tr><td>正戊烷 n-C₅H₁₂</td><td>0.050</td><td>0.171</td><td>0.0086</td><td>0.2925</td></tr>
+<tr class="tot"><td>合计</td><td>1.000</td><td>—</td><td>1.1822</td><td>1.3148</td></tr>
+</table></div>
+<p class="tnote">ΣzK = 1.18 &gt; 1 且 Σz/K = 1.31 &gt; 1 ⇒ <b>体系确在两相区</b> ✓（否则题目条件不成立）</p>
+<div class="steps">
+<div class="st"><span class="no">1</span><div><b>解 Rachford–Rice 方程试差 V</b>：<span class="fx">g(V)=Σ z<sub>i</sub>(K<sub>i</sub>−1)/[1+(K<sub>i</sub>−1)V]</span>
+<table class="c5" style="margin-top:6px"><tr><th>试 V</th><td>0</td><td>0.40</td><td>0.54</td><td>0.55</td></tr>
+<tr><th>g(V)</th><td>+0.182</td><td>+0.052</td><td>+0.001</td><td>−0.003</td></tr></table>
+g 由正穿零 ⇒ <b>V ≈ 0.543</b>（汽相占 54.3%，摩尔基准）。</div></div>
+<div class="st"><span class="no">2</span><div><b>代回求组成</b>（下表），并校核 Σx、Σy。</div></div>
+</div>
+<div class="tbl-wrap"><table class="c5">
+<tr><th>组分</th><th>K<sub>i</sub></th><th>x<sub>i</sub> = z<sub>i</sub>/[1+(K<sub>i</sub>−1)V]</th><th>y<sub>i</sub> = K<sub>i</sub>x<sub>i</sub></th><th>校核 y<sub>i</sub>/x<sub>i</sub></th></tr>
+<tr><td>丙烷 C₃H₈</td><td>1.579</td><td>0.4946</td><td>0.7810</td><td>1.579 ✓</td></tr>
+<tr><td>正丁烷 n-C₄H₁₀</td><td>0.491</td><td>0.4146</td><td>0.2034</td><td>0.491 ✓</td></tr>
+<tr><td>正戊烷 n-C₅H₁₂</td><td>0.171</td><td>0.0909</td><td>0.0156</td><td>0.171 ✓</td></tr>
+<tr class="tot"><td>合计</td><td>—</td><td>1.0000</td><td>1.0000</td><td>—</td></tr>
+</table></div>
+<div class="ans"><span class="lb">答案</span>
+汽相摩尔分率 <b>V ≈ 0.54</b>（液相 0.46）。<br>
+<b>液相组成 x</b>：丙烷 0.495，正丁烷 0.415，正戊烷 0.091；<br>
+<b>气相组成 y</b>：丙烷 0.781，正丁烷 0.203，正戊烷 0.016。</div>
+<div class="keys"><span class="lb">标注要点</span><ol>
+<li><b>轻组分“跑气里”、重组分“留液里”</b>：丙烷 K&gt;1，气相中被富集（0.650→0.781）；正丁烷、正戊烷 K&lt;1，富集于液相（正戊烷 0.050→0.091，放大近一倍）。</li>
+<li>总组成满足杠杆比：z<sub>i</sub> = (1−V)x<sub>i</sub> + V·y<sub>i</sub>，可用丙烷自查：0.457×0.4946+0.543×0.7810=0.6498 ✓。</li>
+<li>先判两相区再解方程——若 ΣzK、Σz/K 不同时 &gt;1，Rachford–Rice 无物理解，直接写“全液/全气”。</li></ol></div>
+</div>
+</details>
+</section>
+
+<!-- ================= 第 9 题 ================= -->
+<section class="card" id="p9">
+<details class="prob" open>
+<summary><span class="pno">9</span><h2>泡点压力：60℃ 下混合物的 Pb</h2><span class="ptag">相平衡计算</span>
+<span class="pre">答案：p<sub>b</sub> ≈ 0.47 MPa（≈68 psia，与原版题解一致）</span></summary>
+<div class="pbody">
+<div class="qbox"><span class="lb">题目</span>
+计算下列混合物在 60℃ 条件下的泡点压力。<br>
+丙烷 0.083、正丁烷 0.376、正戊烷 0.101、正己烷 0.257、正庚烷 0.183（摩尔分数，合计 1.000）。</div>
+<div class="meth"><span class="lb">思路 · 方法标注</span>
+<b>泡点</b>＝加热/降压时“冒出第一个气泡”的状态：此时体系几乎全为液相，<b>液相组成≈总组成</b>（x<sub>i</sub>=z<sub>i</sub>），第一个气泡组成 y<sub>i</sub>=K<sub>i</sub>z<sub>i</sub>。泡点条件（相态方程之一）：</div>
+<p style="text-align:center;margin:6px 0"><span class="fx">Σ z<sub>i</sub>K<sub>i</sub> = 1</span>（在 (T, p<sub>b</sub>) 下成立）</p>
+<div class="steps">
+<div class="st"><span class="no">1</span><div><b>试差 p</b>：猜一个 p → 查（算）各 K<sub>i</sub>(T,p) → 算 Σz<sub>i</sub>K<sub>i</sub>；ΣzK&gt;1 说明 p 偏低（K 随 p 升高而减小），ΣzK&lt;1 说明 p 偏高，反复到 ΣzK=1。</div></div>
+<div class="st"><span class="no">2</span><div><b>本页捷径</b>：Wilson 式可写成 K<sub>i</sub>=A<sub>i</sub>/p（A<sub>i</sub> 只与组分和温度有关），代入泡点条件得<b>解析解</b> <span class="fx">p<sub>b</sub> = Σ z<sub>i</sub>A<sub>i</sub></span>，一次算出、无需迭代：</div></div>
+</div>
+<div class="tbl-wrap"><table class="c5">
+<tr><th>组分</th><th>z<sub>i</sub></th><th>A<sub>i</sub> (MPa)（60℃）</th><th>z<sub>i</sub>A<sub>i</sub> (MPa)</th><th>p<sub>b</sub> 时的 K<sub>i</sub>=A<sub>i</sub>/p<sub>b</sub></th><th>第一个气泡 y<sub>i</sub>=K<sub>i</sub>z<sub>i</sub></th></tr>
+<tr><td>丙烷 C₃H₈</td><td>0.083</td><td>2.1514</td><td>0.1786</td><td>4.612</td><td>0.383</td></tr>
+<tr><td>正丁烷 n-C₄H₁₀</td><td>0.376</td><td>0.6398</td><td>0.2406</td><td>1.372</td><td>0.516</td></tr>
+<tr><td>正戊烷 n-C₅H₁₂</td><td>0.101</td><td>0.2146</td><td>0.0217</td><td>0.460</td><td>0.046</td></tr>
+<tr><td>正己烷 n-C₆H₁₄</td><td>0.257</td><td>0.0782</td><td>0.0201</td><td>0.168</td><td>0.043</td></tr>
+<tr><td>正庚烷 n-C₇H₁₆</td><td>0.183</td><td>0.0301</td><td>0.0055</td><td>0.065</td><td>0.012</td></tr>
+<tr class="tot"><td>合计</td><td>1.000</td><td>—</td><td>0.4664</td><td>—</td><td>1.000</td></tr>
+</table></div>
+<p class="tnote">迭代校核：把 p=0.4664MPa 代回算 K，ΣzK = 1.00000 ✓（脚本已复核）</p>
+<div class="ans"><span class="lb">答案</span>
+<b>p<sub>b</sub> ≈ 0.47 MPa</b>（0.4664 MPa ≈ 67.7 psia ≈ 68 psia）。<br>
+第一个气泡的组成 y ≈（丙烷 0.38、正丁烷 0.52、正戊烷 0.05、正己烷 0.04、正庚烷 0.01）——气泡里近九成是 C₃+C₄。</div>
+<div class="keys"><span class="lb">标注要点</span><ol>
+<li><b>泡点方程 ΣzK=1、露点方程 Σz/K=1、闪蒸 Rachford–Rice</b>——相态方程三件套是本章核心考点，必须默写。</li>
+<li>ΣzK 随 p 升高而<b>单调减小</b>（每个 K 都随 p 增大而减小），所以试差一定收敛、方向不会反复。</li>
+<li>本混合物重烃占主导（C₄～C₇ 合计 0.917），60℃ 泡点只有 0.47 MPa——比丙烷自己的蒸气压还低得多，因为泡点是“加权”结果：看 z<sub>i</sub>A<sub>i</sub> 列，贡献最大的是正丁烷（0.2406）而非丙烷。</li></ol></div>
+</div>
+</details>
+</section>
+
+<!-- ================= 第 10 题 ================= -->
+<section class="card" id="p10">
+<details class="prob" open>
+<summary><span class="pno">10</span><h2>露点压力：60℃ 下同一混合物的 P<sub>d</sub></h2><span class="ptag">相平衡计算</span>
+<span class="pre">答案：p<sub>d</sub> ≈ 0.096 MPa（13.9 psia，低于 1 个大气压）</span></summary>
+<div class="pbody">
+<div class="qbox"><span class="lb">题目</span>
+计算习题 9 中混合物在 60℃ 条件下的露点压力。</div>
+<div class="meth"><span class="lb">思路 · 方法标注</span>
+<b>露点</b>＝降压/升温时“剩下最后一滴液”的状态：体系几乎全为气相，<b>气相组成≈总组成</b>（y<sub>i</sub>=z<sub>i</sub>），最后一滴液 x<sub>i</sub>=z<sub>i</sub>/K<sub>i</sub>。露点条件：</div>
+<p style="text-align:center;margin:6px 0"><span class="fx">Σ z<sub>i</sub>/K<sub>i</sub> = 1</span>（在 (T, p<sub>d</sub>) 下成立）</p>
+<div class="steps">
+<div class="st"><span class="no">1</span><div><b>试差方向与泡点相反</b>：Σz/K 随 p 升高而增大，Σz/K&gt;1 ⇒ p 偏高，要往下试。</div></div>
+<div class="st"><span class="no">2</span><div><b>Wilson 捷径</b>：K<sub>i</sub>=A<sub>i</sub>/p 代入得 <span class="fx">p<sub>d</sub> = 1 / Σ(z<sub>i</sub>/A<sub>i</sub>)</span>，一次求解：</div></div>
+</div>
+<div class="tbl-wrap"><table class="c5">
+<tr><th>组分</th><th>z<sub>i</sub></th><th>A<sub>i</sub> (MPa)（60℃）</th><th>z<sub>i</sub>/A<sub>i</sub> (MPa⁻¹)</th><th>p<sub>d</sub> 时的 K<sub>i</sub></th><th>最后一滴液 x<sub>i</sub>=z<sub>i</sub>/K<sub>i</sub></th></tr>
+<tr><td>丙烷 C₃H₈</td><td>0.083</td><td>2.1514</td><td>0.0386</td><td>22.50</td><td>0.004</td></tr>
+<tr><td>正丁烷 n-C₄H₁₀</td><td>0.376</td><td>0.6398</td><td>0.5877</td><td>6.69</td><td>0.056</td></tr>
+<tr><td>正戊烷 n-C₅H₁₂</td><td>0.101</td><td>0.2146</td><td>0.4706</td><td>2.24</td><td>0.045</td></tr>
+<tr><td>正己烷 n-C₆H₁₄</td><td>0.257</td><td>0.0782</td><td>3.2864</td><td>0.82</td><td>0.314</td></tr>
+<tr><td>正庚烷 n-C₇H₁₆</td><td>0.183</td><td>0.0301</td><td>6.0797</td><td>0.31</td><td>0.581</td></tr>
+<tr class="tot"><td>合计</td><td>1.000</td><td>—</td><td>10.4630</td><td>—</td><td>1.000</td></tr>
+</table></div>
+<p class="tnote">p<sub>d</sub> = 1/10.4630 = 0.0956 MPa；迭代校核 Σ(z/K) = 1.00000 ✓</p>
+<div class="ans"><span class="lb">答案</span>
+<b>p<sub>d</sub> ≈ 0.096 MPa</b>（13.9 psia ≈ 0.94 个大气压）。<br>
+最后一滴液组成 x ≈（正己烷 0.31、正庚烷 0.58，其余合计 0.11）——几乎全是 C₆、C₇。</div>
+<div class="fig" aria-hidden="true">
+<svg viewBox="0 0 640 168" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="60℃等温线上三个压力区间的相态示意">
+  <text x="320" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#334155">60℃ 等温线上的相态分区（题 9/10 混合物，示意）</text>
+  <rect x="50" y="52" width="94" height="34" fill="#dbeafe"/>
+  <rect x="144" y="52" width="363" height="34" fill="#fef3c7"/>
+  <rect x="507" y="52" width="83" height="34" fill="#d1fae5"/>
+  <line x1="50" y1="86" x2="590" y2="86" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="97" y="74" text-anchor="middle" font-size="12" fill="#1d4ed8" font-weight="700">气相（单相）</text>
+  <text x="325" y="74" text-anchor="middle" font-size="12" fill="#92400e" font-weight="700">气液两相共存</text>
+  <text x="548" y="74" text-anchor="middle" font-size="12" fill="#047857" font-weight="700">液相（单相）</text>
+  <line x1="144" y1="42" x2="144" y2="96" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="507" y1="42" x2="507" y2="96" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="144" y="112" text-anchor="middle" font-size="11.5" fill="#334155">露点 p<tspan baseline-shift="sub" font-size="9">d</tspan>≈0.096 MPa</text>
+  <text x="507" y="112" text-anchor="middle" font-size="11.5" fill="#334155">泡点 p<tspan baseline-shift="sub" font-size="9">b</tspan>≈0.466 MPa</text>
+  <text x="50" y="136" font-size="11" fill="#64748b">p=0</text>
+  <text x="144" y="136" text-anchor="middle" font-size="11" fill="#64748b">0.096</text>
+  <text x="507" y="136" text-anchor="middle" font-size="11" fill="#64748b">0.466</text>
+  <text x="590" y="136" text-anchor="end" font-size="11" fill="#64748b">p/MPa →</text>
+  <text x="320" y="156" text-anchor="middle" font-size="11" fill="#64748b">同一混合物、同一温度：从液相降压 → 泡点出气 → 两相区 → 露点液尽 → 气相</text>
+</svg>
+<div class="figcap">图：泡点、露点把等温线切成三段——两相区宽度（0.096～0.466 MPa）即该温度下的压力“窗口”</div>
+</div>
+<div class="keys"><span class="lb">标注要点</span><ol>
+<li><b>露点对最重组分极其敏感</b>：z<sub>i</sub>/A<sub>i</sub> 列里正庚烷贡献 6.08（占 58%）——Σz/K 主导项永远是最重的组分，这是露点计算与泡点计算最大的不同（泡点由轻组分主导）。</li>
+<li><b>p<sub>d</sub> &lt; 1 个大气压</b>：说明 60℃ 下这种富重烃混合物抽真空才能完全汽化，常压下必然有液相残留——与它泡点只有 0.47 MPa 相互印证。</li>
+<li>易错：把露点条件写成 ΣzK=1（那是泡点）。记法——<b>泡点看“气”（y=Kz，ΣKz=1），露点看“液”（x=z/K，Σz/K=1）</b>。</li></ol></div>
+</div>
+</details>
+</section>
+
+<!-- ================= 第 11 题 ================= -->
+<section class="card" id="p11">
+<details class="prob" open>
+<summary><span class="pno">11</span><h2>微分汽化：泡点液体从 4.1MPa 降到 2.8MPa，汽化了多少气？</h2><span class="ptag">相平衡计算 ★</span>
+<span class="pre">答案：汽化气相分率 ≈ 0.12（12%，摩尔基准）；放出气中甲烷占 89%</span></summary>
+<div class="pbody">
+<div class="qbox"><span class="lb">题目</span>
+某烃类混合物在 26.7℃ 下的泡点压力为 4.1MPa。将该液体在 26.7℃ 下进行<b>微分汽化</b>，压力降至 2.8MPa，求此时的汽化气相分率（K 值查附录 4）。<br>
+甲烷 0.160、丙烷 0.380、正戊烷 0.460（摩尔分数，合计 1.000）。</div>
+<div class="meth"><span class="lb">思路 · 方法标注</span>
+<b>微分汽化（differential vaporization）</b>：压力逐级下降，<b>每瞬间生成的气体随即移走</b>，液相组成沿泡点线不断“变重”。与一次闪蒸的根本区别：闪蒸全程气体与液体保持接触、终态一次性平衡；微分汽化的气相“边生边走”。<br>
+① 组分衡算微分方程：瞬间气相组成 y<sub>i</sub>=K<sub>i</sub>x<sub>i</sub>，移走 dn<sub>L</sub> 摩尔液体量的气 ⇒ <span class="fx">d(n<sub>L</sub>x<sub>i</sub>) = K<sub>i</sub>x<sub>i</sub>·dn<sub>L</sub></span>；<br>
+② K 在 4.1→2.8MPa 范围内近似取<b>终压 2.8MPa 的值</b>（教材标准处理），积分得 <span class="fx">x<sub>i</sub> = z<sub>i</sub>·n<sub>L</sub><sup>K<sub>i</sub>−1</sup></span>（z<sub>i</sub> 为初始液相组成，n<sub>L</sub> 为剩余液相摩尔数，初始为 1）；<br>
+③ 归一化约束 <span class="fx">Σ z<sub>i</sub>·n<sub>L</sub><sup>K<sub>i</sub>−1</sup> = 1</span>，试差解出 n<sub>L</sub>；<br>
+④ 汽化分率 <span class="fx">V<sub>g</sub> = 1 − n<sub>L</sub></span>。</div>
+<div class="warn"><span class="lb">K 值标定说明</span>
+Wilson 公式直接算本混合物泡点得 5.7MPa，比题给 4.1MPa 偏高（Wilson 对含甲烷体系的通病——未含收敛压力校正）。处理：将各组分 K 值<b>同乘标定系数 s=0.719</b>，使 ΣzK=1 在题给泡点 4.1MPa 严格成立，再按 Wilson 的压力趋势外推到 2.8MPa：
+<table class="c5" style="margin-top:6px"><tr><th>K 值</th><th>甲烷</th><th>丙烷</th><th>正戊烷</th></tr>
+<tr><td>K（4.1MPa，泡点校核）</td><td>5.79</td><td>0.176</td><td>0.013</td></tr>
+<tr><td>K（2.8MPa，用于计算）</td><td>8.49</td><td>0.258</td><td>0.019</td></tr></table>
+若直接查附录 4 图版，读到相近数值即可，代入同一流程。</div>
+<div class="steps">
+<div class="st"><span class="no">1</span><div><b>试差 n<sub>L</sub></b>：f(n)=Σ z<sub>i</sub>n<sup>K<sub>i</sub>−1</sup>，f 由 &gt;1 降到 &lt;1，穿 1 处即解
+<table class="c5" style="margin-top:6px"><tr><th>试 n<sub>L</sub></th><td>0.80</td><td>0.85</td><td>0.88</td><td>0.90</td></tr>
+<tr><th>f(n<sub>L</sub>)</th><td>1.051</td><td>1.016</td><td>1.001</td><td>0.994</td></tr></table>
+⇒ <b>n<sub>L</sub> ≈ 0.88</b>（试差方向：f 随 n<sub>L</sub> 增大而减小）。</div></div>
+<div class="st"><span class="no">2</span><div><b>求终态液相组成</b> x<sub>i</sub>=z<sub>i</sub>n<sub>L</sub><sup>K<sub>i</sub>−1</sup> 与累积放出气组成 ȳ<sub>i</sub>=(z<sub>i</sub>−n<sub>L</sub>x<sub>i</sub>)/V<sub>g</sub>：</div></div>
+</div>
+<div class="tbl-wrap"><table class="c5">
+<tr><th>组分</th><th>z<sub>i</sub>（初始液）</th><th>K<sub>i</sub>(2.8MPa)</th><th>终了液相 x<sub>i</sub></th><th>累积放出气 ȳ<sub>i</sub></th></tr>
+<tr><td>甲烷 CH₄</td><td>0.160</td><td>8.49</td><td>0.062</td><td>0.888</td></tr>
+<tr><td>丙烷 C₃H₈</td><td>0.380</td><td>0.258</td><td>0.417</td><td>0.103</td></tr>
+<tr><td>正戊烷 n-C₅H₁₂</td><td>0.460</td><td>0.019</td><td>0.520</td><td>0.009</td></tr>
+<tr class="tot"><td>合计</td><td>1.000</td><td>—</td><td>1.000</td><td>1.000</td></tr>
+</table></div>
+<div class="ans"><span class="lb">答案</span>
+剩余液相 n<sub>L</sub> ≈ 0.88，<b>汽化气相分率 V<sub>g</sub> = 1 − n<sub>L</sub> ≈ 0.12（12%，摩尔基准）</b>。<br>
+终了液相组成：甲烷 0.06、丙烷 0.42、正戊烷 0.52；累积放出气组成：甲烷 0.89、丙烷 0.10、正戊烷 0.01。</div>
+<div class="keys"><span class="lb">标注要点</span><ol>
+<li><b>为什么放出气近九成是甲烷？</b>甲烷 K=8.5 远大于 1，每瞬间生成的气都被甲烷“抢占”；它又随即被移走，所以液相里的甲烷被快速抽空（0.160→0.062）。这正是微分汽化“液相贫化轻组分更快”的直观体现。</li>
+<li><b>与一次闪蒸对照</b>：同条件改为一次闪蒸（气体不走了），汽化分率约 0.07——微分汽化移走的累积气反而略多、且气更富甲烷；两种脱气方式的差异是地面分离流程设计（一级/多级分离）的理论基础。</li>
+<li><b>方法注记</b>：K 实际随压力变化（甲烷 K 从 4.1MPa 的 5.8 升到 2.8MPa 的 8.5）。教材试差法取终压 K 近似全程；若沿压力路径逐步积分（每小步闪蒸后放气），得 V<sub>g</sub>≈0.07。考试按教材试差法作答即可，两种口径的差异来源要能说清楚。</li>
+<li>易错：微分汽化绝不能用总组成 z 直接套 Rachford–Rice 闪蒸方程——那是“一次闪蒸”。微分汽化的标志是液相组成在变，必须用积分式 x<sub>i</sub>=z<sub>i</sub>n<sub>L</sub><sup>K<sub>i</sub>−1</sup>。</li></ol></div>
+</div>
+</details>
+</section>
+
+<!-- ================= 附录 ================= -->
+<section class="appx" id="appx">
+<details class="appx">
+<summary>📎 附录：组分物性表 · 公式速查 · 口径说明</summary>
+<div class="abody">
+<h4 style="margin:14px 0 6px;font-size:14.5px">Wilson 公式所用组分物性</h4>
+<div class="tbl-wrap"><table class="c5">
+<tr><th>组分</th><th>临界温度 T<sub>c</sub> (K)</th><th>临界压力 P<sub>c</sub> (MPa)</th><th>偏心因子 ω</th></tr>
+<tr><td>甲烷 CH₄</td><td>190.6</td><td>4.599</td><td>0.008</td></tr>
+<tr><td>丙烷 C₃H₈</td><td>369.8</td><td>4.249</td><td>0.152</td></tr>
+<tr><td>正丁烷 n-C₄H₁₀</td><td>425.2</td><td>3.796</td><td>0.200</td></tr>
+<tr><td>正戊烷 n-C₅H₁₂</td><td>469.7</td><td>3.369</td><td>0.251</td></tr>
+<tr><td>正己烷 n-C₆H₁₄</td><td>507.9</td><td>3.012</td><td>0.296</td></tr>
+<tr><td>正庚烷 n-C₇H₁₆</td><td>540.2</td><td>2.736</td><td>0.351</td></tr>
+</table></div>
+<h4 style="margin:14px 0 6px;font-size:14.5px">公式速查</h4>
+<div class="ruler">
+<span class="rk">平衡比定义：K<sub>i</sub>=y<sub>i</sub>/x<sub>i</sub>（K&gt;1 富集于气，K&lt;1 富集于液）</span>
+<span class="rk">Wilson：K<sub>i</sub>=(P<sub>ci</sub>/p)·exp[5.37(1+ω<sub>i</sub>)(1−T<sub>ci</sub>/T)]</span>
+<span class="rk">两相区判据：Σz<sub>i</sub>K<sub>i</sub>&gt;1 且 Σz<sub>i</sub>/K<sub>i</sub>&gt;1</span>
+<span class="rk">泡点：Σz<sub>i</sub>K<sub>i</sub>=1；露点：Σz<sub>i</sub>/K<sub>i</sub>=1</span>
+<span class="rk">闪蒸：Σz<sub>i</sub>(K<sub>i</sub>−1)/[1+(K<sub>i</sub>−1)V]=0；x<sub>i</sub>=z<sub>i</sub>/[1+(K<sub>i</sub>−1)V]；y<sub>i</sub>=K<sub>i</sub>x<sub>i</sub></span>
+<span class="rk">物料守恒：z<sub>i</sub>=(1−V)x<sub>i</sub>+V·y<sub>i</sub></span>
+<span class="rk">微分汽化：x<sub>i</sub>=z<sub>i</sub>·n<sub>L</sub><sup>K<sub>i</sub>−1</sup>，Σx<sub>i</sub>=1 试差 n<sub>L</sub>；V<sub>g</sub>=1−n<sub>L</sub></span>
+<span class="rk">单位：1 MPa=145.04 psia；71.1℃=160℉；60℃=140℉；26.7℃=80℉</span>
+</div>
+<p style="margin-top:10px" class="tnote">口径说明：本页 K 值全部由 Wilson 公式重建（与附录 4 平衡常数数据同体系），题 9 泡点 0.466MPa≈68psia 与该题英文原版（McCain《The Properties of Petroleum Fluids》）题解一致；题 11 按题给泡点对标定系数后再取终压 K 做试差。全部数值均经随附的 Python 校核脚本复核（第三章习题-计算校核.py），手查附录 4 的读图差异代入同一流程即可。</p>
+</div>
+</details>
+</section>
+
+<div class="foot">
+生成于 2026-10-11 · 第三章《油气藏烃类的相态和汽液平衡》课后习题 8～11 详解 · 与《油层物理学 0-4 章 知识库》同风格 · 手机端建议直接收藏本页，可根据需要折叠/展开各题。
+</div>
+
+</div>
+<script>
+window.addEventListener('beforeprint', function(){
+  document.querySelectorAll('details').forEach(function(d){d.open=true;});
+});
+</script>
+</body>
+</html>
