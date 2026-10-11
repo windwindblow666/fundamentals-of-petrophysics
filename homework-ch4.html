@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>第四章 储层流体的高压物性 · 习题详解（标注版）</title>
+<style>
+:root{
+  --bg:#eef2f7; --card:#ffffff; --ink:#1e293b; --ink2:#334155; --muted:#64748b;
+  --line:#cbd5e1; --line2:#e2e8f0; --th:#1e3a8a; --zebra:#f8fafc;
+  --blue:#2563eb; --blue10:#dbeafe; --red:#dc2626; --redbg:#fef2f2; --redline:#fecaca;
+  --green:#059669; --greenbg:#ecfdf5; --greenline:#34d399;
+  --amberbg:#fffbeb; --amberline:#fde68a; --amberink:#92400e;
+  --qbg:#f0f9ff; --qline:#0284c7; --tocbg:rgba(238,242,247,.94);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b1220; --card:#131c2e; --ink:#dbe4f2; --ink2:#b7c5dc; --muted:#8fa3c0;
+    --line:#2a3852; --line2:#212e46; --th:#274690; --zebra:#0f1830;
+    --blue:#60a5fa; --blue10:#1c2a4a; --red:#f87171; --redbg:#2b1a1d; --redline:#7f2428;
+    --green:#34d399; --greenbg:#0d2b22; --greenline:#1d5c46;
+    --amberbg:#2b2210; --amberline:#8a5a13; --amberink:#fcd34d;
+    --qbg:#0e2033; --qline:#38bdf8; --tocbg:rgba(11,18,32,.94);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Segoe UI",sans-serif;
+  line-height:1.8;font-size:15.5px;-webkit-text-size-adjust:100%}
+.wrap{max-width:880px;margin:0 auto;padding:0 14px 90px}
+@media(min-width:760px){.wrap{padding:0 24px 90px}}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(120deg,#0f172a 0%,#1e3a8a 60%,#334155 100%);
+  border-radius:14px;color:#fff;padding:26px 18px 22px;margin:16px 0;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
+  background:linear-gradient(90deg,#eab308 0 33%,#dc2626 33% 66%,#1d4ed8 66% 100%)}
+.hero h1{margin:0 0 6px;font-size:clamp(19px,5.4vw,25px);letter-spacing:.02em}
+.hero .sub{color:#cbd5e1;font-size:13.5px}
+.hero .chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+.hero .chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;padding:3px 12px;font-size:12px}
+
+/* ---------- 顶部粘性目录 ---------- */
+.toc{position:sticky;top:0;z-index:50;background:var(--tocbg);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:0 -14px;padding:8px 14px 9px}
+@media(min-width:760px){.toc{margin:0 -24px;padding:8px 24px 9px}}
+.toc .row{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none}
+.toc .row::-webkit-scrollbar{display:none}
+.toc a{flex:none;display:inline-flex;align-items:center;gap:5px;min-height:38px;
+  padding:7px 13px;border-radius:999px;background:var(--card);border:1px solid var(--line);
+  color:var(--ink2);text-decoration:none;font-size:13px;white-space:nowrap}
+.toc a b{color:var(--blue);font-weight:700}
+
+/* ---------- 卡片 ---------- */
+.card{background:var(--card);border-radius:14px;padding:14px 14px 18px;margin:16px 0;
+  box-shadow:0 1px 3px rgba(15,23,42,.10);scroll-margin-top:62px}
+@media(min-width:760px){.card{padding:20px 26px 24px}}
+details.prob{border:none;background:none;border-radius:0;margin:0;padding:0;overflow:visible}
+details.prob>summary{list-style:none;cursor:pointer;display:flex;align-items:center;
+  gap:8px;flex-wrap:wrap;padding:8px 2px 12px;-webkit-tap-highlight-color:transparent;user-select:none}
+details.prob>summary::-webkit-details-marker{display:none}
+details.prob>summary .pno{flex:none;width:30px;height:30px;border-radius:50%;background:var(--th);
+  color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+details.prob>summary h2{flex:1 1 200px;margin:0;font-size:16.5px;line-height:1.45;color:var(--ink)}
+details.prob>summary .ptag{flex:none;font-size:11.5px;color:var(--muted);
+  background:var(--zebra);border:1px solid var(--line2);border-radius:999px;padding:1px 10px}
+details.prob>summary .pre{flex:1 1 100%;font-size:12.3px;color:var(--muted);
+  border-left:3px solid var(--green);padding-left:8px;margin-left:38px}
+details.prob>summary::after{content:"▾";color:var(--muted);font-size:13px;flex:none;
+  transition:transform .15s}
+details.prob:not([open])>summary::after{transform:rotate(-90deg)}
+details.prob[open]>summary .pre{display:none}
+
+/* ---------- 内容模块 ---------- */
+.qbox{background:var(--qbg);border-left:5px solid var(--qline);border-radius:0 10px 10px 0;
+  padding:10px 14px;margin:10px 0;font-size:14.2px}
+.qbox .lb{font-weight:800;color:var(--qline);display:block;font-size:12.5px;
+  letter-spacing:.08em;margin-bottom:3px}
+.meth{background:var(--zebra);border-left:5px solid var(--blue);border-radius:0 10px 10px 0;
+  padding:10px 14px;margin:12px 0;font-size:14.2px}
+.meth .lb{font-weight:800;color:var(--blue);display:block;font-size:12.5px;
+  letter-spacing:.08em;margin-bottom:3px}
+.warn{background:var(--redbg);border-left:5px solid var(--red);border-radius:0 10px 10px 0;
+  padding:10px 14px;margin:12px 0;font-size:14.2px}
+.warn .lb{font-weight:800;color:var(--red);display:block;font-size:12.5px;
+  letter-spacing:.08em;margin-bottom:3px}
+.ans{background:var(--greenbg);border:1.5px solid var(--greenline);border-radius:12px;
+  padding:12px 16px;margin:14px 0;font-size:14.6px}
+.ans .lb{font-weight:800;color:var(--green);font-size:12.5px;letter-spacing:.08em;
+  display:block;margin-bottom:4px}
+.keys{background:var(--amberbg);border:1px solid var(--amberline);border-radius:12px;
+  padding:12px 16px 12px 14px;margin:14px 0;font-size:14px}
+.keys .lb{font-weight:800;color:var(--amberink);font-size:12.5px;letter-spacing:.08em;
+  display:block;margin-bottom:6px}
+.keys ol{margin:0;padding-left:20px}
+.keys li{margin:7px 0}
+.keys li b{color:var(--amberink)}
+
+/* ---------- 表格 ---------- */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line2);
+  border-radius:10px;margin:10px 0 4px;background:var(--card)}
+.tbl-wrap table{margin:0}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.8px}
+table.c5{min-width:520px}
+th,td{border:1px solid var(--line2);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--th);color:#fff;font-weight:600;white-space:nowrap}
+tr:nth-child(even) td{background:var(--zebra)}
+tr.tot td{background:var(--blue10);font-weight:800;color:var(--ink)}
+tr.pbt td{background:var(--amberbg);font-weight:700;color:var(--ink)}
+.tnote{font-size:12.3px;color:var(--muted);margin:2px 0 8px}
+
+/* ---------- 公式与步骤 ---------- */
+.fx{display:inline-block;font-family:"Cambria Math",Cambria,"Times New Roman",Georgia,serif;
+  font-style:italic;background:var(--zebra);border:1px solid var(--line2);border-radius:6px;
+  padding:1px 8px;font-size:14.8px;line-height:1.7;margin:2px 1px}
+.fx b{font-style:normal;font-weight:700}
+.fx sub,.fx sup{font-size:.72em}
+.steps{margin:12px 0}
+.steps .st{display:flex;gap:10px;margin:8px 0;font-size:14.2px}
+.steps .st .no{flex:none;width:25px;height:25px;border-radius:8px;background:var(--blue);
+  color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;
+  justify-content:center;margin-top:3px}
+.steps .st .tt{font-weight:700;color:var(--ink)}
+.ruler{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.ruler .rk{background:var(--card);border:1px solid var(--line);color:var(--ink2);
+  border-radius:8px;padding:3px 10px;font-size:13px}
+
+/* ---------- 图 ---------- */
+.fig{background:#ffffff;border:1px solid var(--line2);border-radius:12px;
+  padding:10px 8px 6px;margin:12px 0}
+.fig svg{width:100%;height:auto;display:block}
+.figcap{font-size:12.3px;color:var(--muted);text-align:center;margin:2px 0 8px}
+
+/* ---------- 附录 / 页脚 ---------- */
+.appx{background:var(--card);border-radius:14px;margin:16px 0;
+  box-shadow:0 1px 3px rgba(15,23,42,.10);scroll-margin-top:62px}
+details.appx>summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:800;
+  font-size:15.5px;color:var(--ink);display:flex;align-items:center;gap:8px;
+  -webkit-tap-highlight-color:transparent}
+details.appx>summary::before{content:"▸";color:var(--muted);transition:transform .15s}
+details.appx[open]>summary::before{transform:rotate(90deg)}
+details.appx .abody{padding:4px 16px 16px;font-size:14px}
+.foot{color:var(--muted);font-size:12.5px;margin-top:24px;border-top:1px solid var(--line);
+  padding-top:14px;line-height:1.9}
+
+@media print{
+  .toc{display:none}
+  body{background:#fff;font-size:13px}
+  .card,.appx{box-shadow:none;border:1px solid #d7dee8;break-inside:avoid-page}
+  .hero{background:#1e3a8a}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <h1>第四章 储层流体的高压物性 · 课后习题详解</h1>
+  <div class="sub">标注版解题过程：每题含<b>思路·方法</b>、分步计算、<b>答案</b>与<b>要点标注</b>（含易错点与物理意义）｜第 5～8 题（PVT 参数应用四连）</div>
+  <div class="chips">
+    <span class="chip">共 4 题（第 5～8 题）</span>
+    <span class="chip">📱 手机适配</span>
+    <span class="chip">数值经脚本复核</span>
+    <span class="chip">图版法：Standing 关联式复核</span>
+  </div>
+</div>
+
+<nav class="toc" aria-label="题目目录">
+  <div class="row">
+    <a href="#p5"><b>5</b> PVT 综合题</a>
+    <a href="#p6"><b>6</b> 地层水压缩系数</a>
+    <a href="#p7"><b>7</b> 溶解气油比</a>
+    <a href="#p8"><b>8</b> 地层油 Bo</a>
+    <a href="#appx"><b>📎</b> 附录</a>
+  </div>
+</nav>
+
+<!-- ================= 第 5 题 ================= -->
+<section class="card" id="p5">
+<details class="prob" open>
+<summary><span class="pno">5</span><h2>PVT 实验数据综合题：B<sub>t</sub>、日产气、地下体积、C<sub>o</sub></h2><span class="ptag">综合应用 ★</span>
+<span class="pre">答案：B<sub>t</sub>=1.603；q<sub>g</sub>=6700 m³/d；地下油 2.882 m³ + 气 2.752 m³；C<sub>o</sub>=1.92×10⁻³ MPa⁻¹</span></summary>
+<div class="pbody">
+<div class="qbox"><span class="lb">题目</span>
+某油藏原始油层压力 p=23.56MPa。该油井样品实验室 PVT 分析结果如下表（p<sub>b</sub>=20.77MPa 为泡点压力）：
+<div class="tbl-wrap"><table>
+<tr><th>p (MPa)</th><th>B<sub>o</sub> (m³/m³)</th><th>R<sub>s</sub> (m³/m³)</th><th>B<sub>g</sub> (m³/m³)</th></tr>
+<tr><td>27.21</td><td>1.517</td><td>167.5</td><td>—</td></tr>
+<tr><td>23.81</td><td>1.527</td><td>167.5</td><td>—</td></tr>
+<tr><td>23.13</td><td>1.530</td><td>167.5</td><td>—</td></tr>
+<tr><td>22.45</td><td>1.532</td><td>167.5</td><td>—</td></tr>
+<tr><td>21.77</td><td>1.534</td><td>167.5</td><td>—</td></tr>
+<tr><td>21.09</td><td>1.537</td><td>167.5</td><td>—</td></tr>
+<tr class="pbt"><td>20.77 (p<sub>b</sub>)</td><td>1.538</td><td>167.5</td><td>0.004858</td></tr>
+<tr><td>18.37</td><td>1.484</td><td>145.8</td><td>0.005464</td></tr>
+<tr><td>16.33</td><td>1.441</td><td>130.3</td><td>0.006115</td></tr>
+<tr><td>14.29</td><td>1.401</td><td>115</td><td>0.007023</td></tr>
+</table></div>
+<p class="tnote">读表要点：泡点以上 R<sub>s</sub> 恒为 167.5（气全部溶完）、B<sub>g</sub> 无意义（无自由气）；泡点以下降压才脱气。</p>
+（1）p=18.37MPa 时总体积系数；（2）地层压力 21.77MPa 时，油井日产 40m³ 地面原油，问地面日产气多少？（3）地层压力 16.33MPa 时，日产天然气 450m³（标准），地面原油 2m³，问这些原油、天然气在地层中各占多少体积？（4）21.77～22.45MPa 之间，原油的等温压缩系数为多少？</div>
+<div class="meth"><span class="lb">思路 · 方法标注</span>
+四个小问各考一个定义式，关键是<b>先判断每问所处的压力区间（泡点以上还是以下）</b>：<br>
+（1）泡点以下＝油气两相，总体积系数（两相体积系数）<span class="fx">B<sub>t</sub> = B<sub>o</sub> + (R<sub>sb</sub> − R<sub>s</sub>)·B<sub>g</sub></span>：1 m³ 地面油 + 它在地下还脱出的 (R<sub>sb</sub>−R<sub>s</sub>) m³ 标准气的地下体积；<br>
+（2）21.77MPa &gt; p<sub>b</sub>：<b>欠饱和，地层内无自由气</b>，产出气全部是溶解气，q<sub>g</sub> = q<sub>o</sub>·R<sub>s</sub>；<br>
+（3）地下体积 = 地面体积 × 体积系数：油 V<sub>o</sub>=V<sub>osc</sub>·B<sub>o</sub>，气 V<sub>g</sub>=V<sub>gsc</sub>·B<sub>g</sub>；<br>
+（4）等温压缩系数定义 <span class="fx">C<sub>o</sub> = −(1/B<sub>o</sub>)·(dB<sub>o</sub>/dp)</span>，两压力点间用差分。</div>
+<div class="steps">
+<div class="st"><span class="no">1</span><div><b>（1）B<sub>t</sub>(18.37MPa)</b>：查表 B<sub>o</sub>=1.484，R<sub>s</sub>=145.8，B<sub>g</sub>=0.005464；R<sub>sb</sub>=167.5（泡点值）。<br>
+B<sub>t</sub> = 1.484 + (167.5−145.8)×0.005464 = 1.484 + 21.7×0.005464 = 1.484 + 0.1186 = <b>1.603 m³/m³</b>。<br>
+含义：18.37MPa 下每 1 m³ 地面油，在地层中连同已脱出的气共占 1.603 m³。</div></div>
+<div class="st"><span class="no">2</span><div><b>（2）地面日产气</b>：21.77MPa 高于泡点 20.77MPa，天然气 100% 溶于油中（R<sub>s</sub>=R<sub>sb</sub>=167.5），地层内没有自由气可单独采出。<br>
+q<sub>g</sub> = 40×167.5 = <b>6700 m³/d</b>（标准条件）。</div></div>
+<div class="st"><span class="no">3</span><div><b>（3）16.33MPa 下的地下体积</b>：查表 B<sub>o</sub>=1.441，B<sub>g</sub>=0.006115。<br>
+油：V<sub>o</sub> = 2×1.441 = <b>2.882 m³</b>；气：V<sub>g</sub> = 450×0.006115 = <b>2.752 m³</b>（合计 5.634 m³/d，即该井地下日采出体积）。<br>
+注意 450 m³ 是标准体积，必须乘 B<sub>g</sub> 换算到地层条件（高压下气体被压缩，B<sub>g</sub>≈1/165）。</div></div>
+<div class="st"><span class="no">4</span><div><b>（4）C<sub>o</sub></b>：21.77→22.45MPa，B<sub>o</sub> 由 1.534 降到 1.532。<br>
+dB<sub>o</sub>/dp = (1.534−1.532)/(21.77−22.45) = 0.002/(−0.68) = −2.941×10⁻³ MPa⁻¹；<br>
+C<sub>o</sub> = −(−2.941×10⁻³)/1.533 = <b>1.92×10⁻³ MPa⁻¹</b>（≈1.32×10⁻⁵ psi⁻¹，量级正常）。</div></div>
+</div>
+<div class="fig" aria-hidden="true">
+<svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bo与Rs随压力变化曲线，泡点20.77MPa处转折">
+  <text x="320" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="#334155">本题 PVT 数据：Bo（左轴）与 Rs（右轴）随压力的变化</text>
+  <g font-size="10.5" fill="#64748b">
+    <text x="46" y="243" text-anchor="end">1.40</text>
+    <text x="46" y="177" text-anchor="end">1.45</text>
+    <text x="46" y="110" text-anchor="end">1.50</text>
+    <text x="46" y="43" text-anchor="end">1.55</text>
+    <text x="594" y="210" text-anchor="start">120</text>
+    <text x="594" y="150" text-anchor="start">140</text>
+    <text x="594" y="90" text-anchor="start">160</text>
+    <text x="594" y="30" text-anchor="start">180</text>
+    <text x="61" y="282" text-anchor="middle">14.29</text>
+    <text x="140" y="282" text-anchor="middle">16.33</text>
+    <text x="219" y="282" text-anchor="middle">18.37</text>
+    <text x="311" y="282" text-anchor="middle">20.77</text>
+    <text x="402" y="282" text-anchor="middle">23.13</text>
+    <text x="560" y="282" text-anchor="middle">27.21</text>
+  </g>
+  <g stroke="#e2e8f0" stroke-width="1">
+    <line x1="50" y1="239.3" x2="590" y2="239.3"/>
+    <line x1="50" y1="172.7" x2="590" y2="172.7"/>
+    <line x1="50" y1="106" x2="590" y2="106"/>
+    <line x1="50" y1="39.3" x2="590" y2="39.3"/>
+  </g>
+  <line x1="50" y1="266" x2="590" y2="266" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="50" y1="26" x2="50" y2="266" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="590" y1="26" x2="590" y2="266" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="311" y1="26" x2="311" y2="266" stroke="#dc2626" stroke-width="1.3" stroke-dasharray="5 4"/>
+  <text x="311" y="256" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="700">泡点 20.77</text>
+  <polyline points="559.5,83.3 428.4,70.0 402.2,66.0 375.9,63.3 349.7,60.7 323.5,56.7 311.1,55.3" fill="none" stroke="#dc2626" stroke-width="2"/>
+  <polyline points="311.1,55.3 218.6,127.3 139.9,184.7 61.2,238.0" fill="none" stroke="#dc2626" stroke-width="2"/>
+  <g fill="#dc2626"><circle cx="559.5" cy="83.3" r="3"/><circle cx="428.4" cy="70" r="3"/><circle cx="402.2" cy="66" r="3"/><circle cx="375.9" cy="63.3" r="3"/><circle cx="349.7" cy="60.7" r="3"/><circle cx="323.5" cy="56.7" r="3"/><circle cx="311.1" cy="55.3" r="3"/><circle cx="218.6" cy="127.3" r="3"/><circle cx="139.9" cy="184.7" r="3"/><circle cx="61.2" cy="238" r="3"/></g>
+  <polyline points="559.5,63.5 311.1,63.5" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 3"/>
+  <polyline points="311.1,63.5 218.6,128.6 139.9,175.1 61.2,221.0" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <g fill="#2563eb"><circle cx="218.6" cy="128.6" r="3"/><circle cx="139.9" cy="175.1" r="3"/><circle cx="61.2" cy="221" r="3"/></g>
+  <text x="470" y="46" font-size="12" fill="#dc2626" font-weight="700">Bo（左轴）</text>
+  <text x="480" y="70" font-size="12" fill="#2563eb" font-weight="700">Rs（右轴）</text>
+  <text x="311" y="294" text-anchor="middle" font-size="11" fill="#64748b">p/MPa（泡点 20.77 处两条曲线同时转折）</text>
+</svg>
+<div class="figcap">图：按本题数据绘制——泡点以上 Bo 随降压微增（弹性膨胀）、Rs 平台；泡点以下脱气，Bo 与 Rs 同步陡降（本题第(4)问的 C<sub>o</sub> 只在泡点以上用）</div>
+</div>
+<div class="ans"><span class="lb">答案</span>
+（1）B<sub>t</sub>(18.37MPa) = <b>1.603 m³/m³</b>；<br>
+（2）地面日产气 = 40×167.5 = <b>6700 m³/d</b>；<br>
+（3）地下体积：原油 <b>2.882 m³</b>，天然气 <b>2.752 m³</b>（合计 5.63 m³/d）；<br>
+（4）C<sub>o</sub> = <b>1.92×10⁻³ MPa⁻¹</b>（21.77～22.45MPa 区间）。</div>
+<div class="keys"><span class="lb">标注要点</span><ol>
+<li><b>先看压力在泡点上方还是下方</b>——本题四个小问的解法完全由这一判断决定：泡点以上无自由气（Rs=Rsb、Bg 无值），泡点以下才有两相计算。这是 PVT 综合题的第一思维。</li>
+<li><b>B<sub>t</sub> 是“油+它脱出的气”合在一起的地下体积</b>：只对泡点以下有意义（泡点处 B<sub>t</sub>=B<sub>o</sub>，最大值 B<sub>ob</sub>=1.538，可代入验证：p=18.37 时 B<sub>t</sub>=1.603&gt;1.538 ✓ 随压力降低继续增大）。</li>
+<li><b>C<sub>o</sub> 只在泡点以上定义才有意义</b>：泡点以下降压时 Bo 的变化受“脱气”控制，不再是纯弹性压缩；所以题目特意选 21.77～22.45MPa（泡点以上）区间。</li>
+<li>易错：（2）问不要再乘 B<sub>g</sub>——6700 m³ 是“地面/标准”日产气量；（3）问 450 m³ 是标准体积，忘乘 B<sub>g</sub> 直接答 450 是最常见的丢分点。</li></ol></div>
+</div>
+</details>
+</section>
+
+<!-- ================= 第 6 题 ================= -->
+<section class="card" id="p6">
+<details class="prob" open>
+<summary><span class="pno">6</span><h2>地层水的等温压缩系数（图版法）</h2><span class="ptag">图版法</span>
+<span class="pre">答案：C<sub>w</sub> ≈ 4.4×10⁻⁴ MPa⁻¹（≈3.0×10⁻⁶ psi⁻¹）</span></summary>
+<div class="pbody">
+<div class="qbox"><span class="lb">题目</span>
+计算油藏压力为 14.0MPa、油藏温度为 80℃、含盐量为 40000mg/L 的地层水的压缩系数。</div>
+<div class="meth"><span class="lb">思路 · 方法标注</span>
+教材方法＝<b>纯水压缩系数图版 + 矿化度校正</b>，两步：<br>
+① 查纯水等温压缩系数图版（Dodson–Standing 型图版，纵轴 C<sub>w</sub>、参数为温度）：(p=14MPa, T=80℃) 处读得 <b>C<sub>w</sub>⁰ ≈ 4.6×10⁻⁴ MPa⁻¹</b>（≈4.55×10⁻¹⁰ Pa⁻¹，与 IAPWS 纯水物性数据一致）；<br>
+② <b>矿化度校正</b>：溶解盐“撑住”水分子骨架，盐水比纯水更难压缩——查矿化度校正曲线，40000mg/L 对应校正系数 ≈ <b>0.96</b>（每 10000mg/L 约降 1%）。</div>
+<div class="steps">
+<div class="st"><span class="no">1</span><div>纯水：C<sub>w</sub>⁰(14MPa, 80℃) ≈ 4.55×10⁻⁴ MPa⁻¹。</div></div>
+<div class="st"><span class="no">2</span><div>校正：C<sub>w</sub> = C<sub>w</sub>⁰ × 0.96 ≈ <b>4.4×10⁻⁴ MPa⁻¹</b>。</div></div>
+</div>
+<div class="ans"><span class="lb">答案</span>
+<b>C<sub>w</sub> ≈ 4.4×10⁻⁴ MPa⁻¹</b>（即 4.4×10⁻¹⁰ Pa⁻¹ ≈ 3.0×10⁻⁶ psi⁻¹）。图版读数允许 ±10% 差异，答案在 4.2～4.7×10⁻⁴ MPa⁻¹ 之间均算正确。</div>
+<div class="keys"><span class="lb">标注要点</span><ol>
+<li><b>量级对比是考点</b>：C<sub>w</sub>~10⁻⁴ MPa⁻¹ &lt;&lt; C<sub>o</sub>~10⁻³ MPa⁻¹（上一题算的原油 1.92×10⁻³）——水的弹性驱动能量远小于油，天然弹性驱里“水顶”贡献有限。</li>
+<li><b>温度的影响大于压力</b>：纯水压缩系数随温度升高而增大（80℃ 明显大于常温的 ~4.6×10⁻⁴ MPa⁻¹ 基线），随压力增大而略减；矿化度升高使 C<sub>w</sub> 减小。三个方向都要记住。</li>
+<li>单位换算易错：1×10⁻⁴ MPa⁻¹ = 6.89×10⁻⁷ psi⁻¹？不——1 MPa⁻¹ = 145.0 psi⁻¹？分清楚：<b>1/MPa 换算到 1/psi 要除以 145</b>（1MPa=145psi，压强单位越大其倒数越小）：4.4×10⁻⁴/145 ≈ 3.0×10⁻⁶ psi⁻¹ ✓。</li></ol></div>
+</div>
+</details>
+</section>
+
+<!-- ================= 第 7 题 ================= -->
+<section class="card" id="p7">
+<details class="prob" open>
+<summary><span class="pno">7</span><h2>溶解气油比 R<sub>s</sub>（图版法）</h2><span class="ptag">图版法</span>
+<span class="pre">答案：R<sub>s</sub> ≈ 67 m³/m³（≈376 scf/STB，图版读数 65～70 均可）</span></summary>
+<div class="pbody">
+<div class="qbox"><span class="lb">题目</span>
+已知某油藏温度 t=79.5℃，产出的油罐原油相对密度 γ<sub>o</sub>=0.89，天然气相对密度 γ<sub>g</sub>=0.7，目前地层饱和压力 15MPa，求目前溶解气油比（用图版法）。</div>
+<div class="meth"><span class="lb">思路 · 方法标注</span>
+用<b>Standing 溶解气油比图版</b>（教材附录图版；其数学形式即 Standing 1947 关联式，单位用矿场制）：
+<p style="text-align:center;margin:6px 0"><span class="fx">R<sub>s</sub> = γ<sub>g</sub> · [ p·10<sup>(0.0125·API − 0.00091·T)</sup> / 18 ]<sup>1.2048</sup></span></p>
+<p class="tnote" style="text-align:center">p：psia；T：℉；API = 141.5/γ<sub>o</sub> − 131.5；R<sub>s</sub>：scf/STB（1 scf/STB = 0.17811 m³/m³）</p>
+图版用法：以 API 为横轴、温度作参数曲线族先定“气体溶解能力系数”，再由压力与 γ<sub>g</sub> 读出 R<sub>s</sub>——与公式完全等价。</div>
+<div class="steps">
+<div class="st"><span class="no">1</span><div><b>单位换算</b>：T = 79.5×1.8+32 = 175.1℉；p = 15MPa = 2175.6 psia；API = 141.5/0.89 − 131.5 = <b>27.5</b>。</div></div>
+<div class="st"><span class="no">2</span><div><b>算指数项</b>：0.0125×27.5 − 0.00091×175.1 = 0.3436 − 0.1593 = 0.1843 ⇒ 10<sup>0.1843</sup> = 1.529。</div></div>
+<div class="st"><span class="no">3</span><div><b>代公式</b>：R<sub>s</sub> = 0.7×(2175.6×1.529/18)<sup>1.2048</sup> = 0.7×(184.8)<sup>1.2048</sup> = 0.7×537 = <b>376 scf/STB</b>。</div></div>
+<div class="st"><span class="no">4</span><div><b>换算</b>：376×0.17811 ≈ <b>67 m³/m³</b>。</div></div>
+</div>
+<div class="ans"><span class="lb">答案</span>
+<b>R<sub>s</sub> ≈ 67 m³/m³</b>（≈376 scf/STB）。直接查图版读数在 65～70 m³/m³ 之间均算正确。</div>
+<div class="keys"><span class="lb">标注要点</span><ol>
+<li><b>四个量的单调关系</b>（考概念必背）：压力↑→R<sub>s</sub>↑（溶解更多）；API↑（油变轻）→R<sub>s</sub>↑；γ<sub>g</sub>↑（气变重、含更多可溶重组分）→R<sub>s</sub>↑；温度↑→R<sub>s</sub>↓（分子动能大、溶解度降）。</li>
+<li><b>注意用“油罐油”相对密度</b>：图版与关联式的基准是地面脱气油（stock-tank oil），题给 γ<sub>o</sub>=0.89 正是它；不要误用地层油密度。</li>
+<li>单位陷阱：公式里 p 一定要用 psia、T 用华氏度；最后结果按题目要求的 m³/m³ 报出，换算系数 0.17811（或 ×5.615 反向）要写清。</li></ol></div>
+</div>
+</details>
+</section>
+
+<!-- ================= 第 8 题 ================= -->
+<section class="card" id="p8">
+<details class="prob" open>
+<summary><span class="pno">8</span><h2>地层油体积系数 B<sub>o</sub>（图版法）</h2><span class="ptag">图版法</span>
+<span class="pre">答案：B<sub>o</sub> ≈ 1.27 m³/m³（图版读数 1.26～1.28 均可）</span></summary>
+<div class="pbody">
+<div class="qbox"><span class="lb">题目</span>
+已知某地层温度 t=80.0℃，溶解气油比 R<sub>s</sub>=80m³/m³；天然气相对密度 γ<sub>g</sub>=0.8，地面脱气油相对密度 γ<sub>o</sub>=0.78，求地层油体积系数（用图版法）。</div>
+<div class="meth"><span class="lb">思路 · 方法标注</span>
+用 <b>Standing 地层油体积系数图版</b>（数学形式为 Standing Bo 关联式，矿场制单位）：
+<p style="text-align:center;margin:6px 0"><span class="fx">B<sub>o</sub> = 0.9759 + 1.2×10⁻⁴ · F<sup>1.2</sup></span><span class="fx">F = R<sub>s</sub>·(γ<sub>g</sub>/γ<sub>o</sub>)<sup>0.5</sup> + 1.25·T</span></p>
+<p class="tnote" style="text-align:center">R<sub>s</sub>：scf/STB；T：℉（F 是把 R<sub>s</sub>、γ<sub>g</sub>/γ<sub>o</sub>、温度三个影响项合成一个“膨胀因子”）</p>
+图版用法：由 R<sub>s</sub> 与 (γ<sub>g</sub>/γ<sub>o</sub>)<sup>0.5</sup> 定中间量，加温度项后沿图版曲线读 B<sub>o</sub>。</div>
+<div class="steps">
+<div class="st"><span class="no">1</span><div><b>单位换算</b>：T = 80×1.8+32 = 176℉；R<sub>s</sub> = 80×5.615 = 449.2 scf/STB；API = 141.5/0.78 − 131.5 = <b>49.9</b>（轻质油）。</div></div>
+<div class="st"><span class="no">2</span><div><b>算 F</b>：F = 449.2×(0.8/0.78)<sup>0.5</sup> + 1.25×176 = 449.2×1.0127 + 220 = 454.9 + 220 = <b>674.9</b>。</div></div>
+<div class="st"><span class="no">3</span><div><b>代公式</b>：F<sup>1.2</sup> = 674.9<sup>1.2</sup> ≈ 2484；B<sub>o</sub> = 0.9759 + 1.2×10⁻⁴×2484 = 0.9759 + 0.298 = <b>1.274</b>。</div></div>
+</div>
+<div class="ans"><span class="lb">答案</span>
+<b>B<sub>o</sub> ≈ 1.27 m³/m³</b>。查图版读数在 1.26～1.28 之间均算正确。</div>
+<div class="keys"><span class="lb">标注要点</span><ol>
+<li><b>物理意义自查</b>：R<sub>s</sub>=80 m³/m³ 属中低溶解气油比，1 m³ 地面油溶进 80 m³ 标准气后地下占 1.27 m³——气把油“撑胖”了 27%，合理（B<sub>o</sub> 恒 &gt;1）。</li>
+<li><b>Bo 的单调关系</b>：R<sub>s</sub>↑、API↑（油轻）、T↑、γ<sub>g</sub>↓（轻气分子小、同质量占体积大）⇒ B<sub>o</sub>↑。与第 7 题 R<sub>s</sub> 的关系对照记忆：γ<sub>g</sub> 对 R<sub>s</sub> 是正贡献、对 B<sub>o</sub>（在 R<sub>s</sub> 固定时）是负贡献——因为公式里 γ<sub>g</sub> 出现在 F 的减效位置 (γ<sub>g</sub>/γ<sub>o</sub>)<sup>0.5</sup> 只影响 R<sub>s</sub> 项的权重。</li>
+<li><b>两题是一对逆问题</b>：第 7 题由 p、T、γ 求 R<sub>s</sub>；本题由 R<sub>s</sub>、T、γ 求 B<sub>o</sub>——PVT 图版法三件套还有第三个：由 R<sub>s</sub>、γ<sub>o</sub>、γ<sub>g</sub>、T 求地层油密度/泡点密度，考试常轮换出题。</li>
+<li>单位陷阱：R<sub>s</sub> 进公式前必须 ×5.615 换成 scf/STB；温度必须换华氏度。换算错了 Bo 能差出 0.1 量级。</li></ol></div>
+</div>
+</details>
+</section>
+
+<!-- ================= 附录 ================= -->
+<section class="appx" id="appx">
+<details class="appx">
+<summary>📎 附录：单位换算 · 公式速查 · 口径说明</summary>
+<div class="abody">
+<h4 style="margin:14px 0 6px;font-size:14.5px">单位换算速查</h4>
+<div class="ruler">
+<span class="rk">1 MPa = 145.04 psia</span>
+<span class="rk">℉ = 1.8×℃ + 32（79.5℃→175.1℉；80℃→176℉）</span>
+<span class="rk">API = 141.5/γ<sub>o</sub> − 131.5（0.89→27.5；0.78→49.9）</span>
+<span class="rk">R<sub>s</sub>：1 m³/m³ = 5.615 scf/STB；1 scf/STB = 0.17811 m³/m³</span>
+<span class="rk">压缩系数：1/MPa ÷145 → 1/psi（4.4×10⁻⁴ MPa⁻¹ ≈ 3.0×10⁻⁶ psi⁻¹）</span>
+</div>
+<h4 style="margin:14px 0 6px;font-size:14.5px">公式速查</h4>
+<div class="ruler">
+<span class="rk">两相体积系数：B<sub>t</sub>=B<sub>o</sub>+(R<sub>sb</sub>−R<sub>s</sub>)B<sub>g</sub>（泡点以下用）</span>
+<span class="rk">泡点以上：R<sub>s</sub>=R<sub>sb</sub>（恒定），无自由气</span>
+<span class="rk">地下体积：V<sub>o</sub>=V<sub>osc</sub>·B<sub>o</sub>；V<sub>g</sub>=V<sub>gsc</sub>·B<sub>g</sub></span>
+<span class="rk">等温压缩系数：C<sub>o</sub>=−(1/B<sub>o</sub>)(dB<sub>o</sub>/dp)，差分取 Bo 平均值</span>
+<span class="rk">Standing R<sub>s</sub>：R<sub>s</sub>=γ<sub>g</sub>[p·10<sup>0.0125API−0.00091T</sup>/18]<sup>1.2048</sup>（psia、℉）</span>
+<span class="rk">Standing B<sub>o</sub>：B<sub>o</sub>=0.9759+1.2×10⁻⁴F<sup>1.2</sup>，F=R<sub>s</sub>(γ<sub>g</sub>/γ<sub>o</sub>)<sup>0.5</sup>+1.25T</span>
+<span class="rk">地层水：C<sub>w</sub>=C<sub>w</sub>⁰(p,T)×矿化度校正系数（40000mg/L≈0.96）</span>
+</div>
+<p style="margin-top:10px" class="tnote">口径说明：“图版法”两题（7、8）的结果用与图版等价的 Standing 关联式算到千分位，手工查图读数允许 ±5% 差异（第 7 题 65～70 m³/m³、第 8 题 1.26～1.28 均正确）；地层水压缩系数按教材图版法（纯水图版+矿化度校正）取值，量级 10⁻⁴ MPa⁻¹，读图差异 ±10%。全部数值均经随附的 Python 校核脚本复核（第四章习题-计算校核.py）。</p>
+</div>
+</details>
+</section>
+
+<div class="foot">
+生成于 2026-10-11 · 第四章《储层流体的高压物性》课后习题 5～8 详解 · 与《油层物理学 0-4 章 知识库》同风格 · 手机端建议直接收藏本页，可根据需要折叠/展开各题。
+</div>
+
+</div>
+<script>
+window.addEventListener('beforeprint', function(){
+  document.querySelectorAll('details').forEach(function(d){d.open=true;});
+});
+</script>
+</body>
+</html>
